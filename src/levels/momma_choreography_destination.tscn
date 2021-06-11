@@ -1,0 +1,5 @@
+[gd_scene format=2]
+
+[node name="MommaChoreographyDestination" type="Position2D" groups=[
+"intro_choreography_destination",
+]]

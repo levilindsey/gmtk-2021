@@ -1,10 +1,10 @@
 tool
-class_name MommaDuckTileMap
+class_name DecorationTileMap
 extends SurfacesTileMap
 
 
 const DEFAULT_TILE_SET := \
-        preload("res://src/levels/momma_duck_tile_set.tres")
+        preload("res://src/levels/decoration_tile_set.tres")
 
 
 func _ready() -> void:

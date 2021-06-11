@@ -1,9 +1,14 @@
 class_name Momma
-extends Player
+extends Duck
 
 
 func _init().("momma") -> void:
     pass
+
+
+func _update_attachment() -> void:
+    is_attached_to_leader = true
+    leader = self
 
 
 func _process_sounds() -> void:

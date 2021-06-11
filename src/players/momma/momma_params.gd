@@ -7,7 +7,7 @@ func _init_params() -> void:
     player_resource_path = \
             "res://src/players/momma/momma.tscn"
     
-    can_grab_walls = true
+    can_grab_walls = false
     can_grab_ceilings = false
     can_grab_floors = true
     
@@ -30,15 +30,15 @@ func _init_params() -> void:
     slow_rise_gravity_multiplier = 0.38
     rise_double_jump_gravity_multiplier = 0.68
     
-    jump_boost = -1500.0
+    jump_boost = -1000.0
     in_air_horizontal_acceleration = 3200.0
     max_jump_chain = 2
-    wall_jump_horizontal_boost = 400.0
+    wall_jump_horizontal_boost = 280.0
     wall_fall_horizontal_boost = 20.0
     
-    walk_acceleration = 10500.0
-    climb_up_speed = -350.0
-    climb_down_speed = 175.0
+    walk_acceleration = 7000.0
+    climb_up_speed = -230.0
+    climb_down_speed = 120.0
     
     minimizes_velocity_change_when_jumping = false
     optimizes_edge_jump_positions_at_run_time = true
@@ -78,15 +78,15 @@ func _init_params() -> void:
     reached_in_air_destination_distance_squared_threshold = 16.0 * 16.0
     max_edges_to_remove_from_end_of_path_for_optimization_to_in_air_destination = 2
     
-    max_horizontal_speed_default = 600.0
+    max_horizontal_speed_default = 400.0
     min_horizontal_speed = 5.0
-    max_vertical_speed = 4000.0
+    max_vertical_speed = 2800.0
     min_vertical_speed = 0.0
     
     fall_through_floor_velocity_boost = 100.0
     
-    dash_speed_multiplier = 4.0
-    dash_vertical_boost = -400.0
+    dash_speed_multiplier = 2.8
+    dash_vertical_boost = -280.0
     dash_duration = 0.3
     dash_fade_duration = 0.1
     dash_cooldown = 1.0

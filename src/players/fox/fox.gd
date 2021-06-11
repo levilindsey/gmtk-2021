@@ -2,7 +2,7 @@ class_name Fox
 extends Player
 
 
-func _init().("momma") -> void:
+func _init().("fox") -> void:
     pass
 
 

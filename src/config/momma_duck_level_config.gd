@@ -1,4 +1,4 @@
-class_name LevelConfig
+class_name MommaDuckLevelConfig
 extends SurfacerLevelConfig
 
 
@@ -12,7 +12,7 @@ var level_manifest := {
         version = "0.0.1",
         priority = 70,
         scene_path = LEVELS_PATH_PREFIX + "level1.tscn",
-        player_names = ["momma"],
+        platform_graph_player_names = ["momma", "duckling"],
     },
 }
 

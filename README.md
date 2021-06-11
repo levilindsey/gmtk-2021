@@ -2,7 +2,7 @@
 
 > _**[Play the game!](https://levi.dev/gmtk21)**_
 
-_TODO: Game plot description / call-to-action_
+_Collect your ducklings and lead them to safety!_
 
 TODO: Game technical description
 

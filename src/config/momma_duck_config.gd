@@ -2,8 +2,8 @@ class_name MommaDuckConfig
 extends Node
 
 
-#var _debug := OS.is_debug_build()
-var _debug := false
+var _debug := OS.is_debug_build()
+#var _debug := false
 var _playtest := true
 #var _playtest := false
 var _uses_threads := true and OS.can_use_threads()
@@ -130,7 +130,7 @@ var _colors_manifest := {
     #     Project Settings > Rendering > Environment > Default Clear Color.
     background = Color("2f4034"),
     font = Color("eeeeee"),
-    header_font = Color("fffaaa"),
+    header_font = Color("fff12e"),
     button = Color("24803b"),
     shiny_button_highlight = Color("98cc70"),
     button_disabled_hsv_delta = {h=0.0, s=-0.4, v=0.15, a=-0.2},
@@ -252,6 +252,8 @@ var _edge_movement_classes := [
 
 var _player_param_classes := [
     preload("res://src/players/momma/momma_params.gd"),
+    preload("res://src/players/duckling/duckling_params.gd"),
+    preload("res://src/players/fox/fox_params.gd"),
 ]
 
 var app_manifest := {
@@ -357,7 +359,7 @@ var app_manifest := {
     
     colors_class = SurfacerColors,
     draw_utils_class = SurfacerDrawUtils,
-    level_config_class = LevelConfig,
+    level_config_class = MommaDuckLevelConfig,
     
     fonts = _fonts,
     

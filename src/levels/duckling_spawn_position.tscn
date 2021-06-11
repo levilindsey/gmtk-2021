@@ -1,0 +1,5 @@
+[gd_scene format=2]
+
+[node name="DucklingSpawnPosition" type="Position2D" groups=[
+"duckling_spawn_positions",
+]]
