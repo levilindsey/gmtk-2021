@@ -1,4 +1,4 @@
-class_name Gmtk21PlayerAnimator
+class_name FoxAnimator
 extends PlayerAnimator
 
 

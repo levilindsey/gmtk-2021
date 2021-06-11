@@ -1,11 +1,11 @@
-class_name Gmtk21PlayerParams
+class_name DucklingParams
 extends MovementParams
 
 
 func _init_params() -> void:
-    name = "gmtk21_player"
+    name = "momma"
     player_resource_path = \
-            "res://src/players/gmtk21_player/gmtk21_player.tscn"
+            "res://src/players/momma/momma.tscn"
     
     can_grab_walls = true
     can_grab_ceilings = false
@@ -133,7 +133,7 @@ func _init_animator_params() -> void:
     animator_params = PlayerAnimatorParams.new()
     
     animator_params.player_animator_scene_path = \
-            "res://src/players/gmtk21_player/gmtk21_player_animator.tscn"
+            "res://src/players/momma/momma_animator.tscn"
     
     animator_params.faces_right_by_default = true
     

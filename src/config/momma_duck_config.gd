@@ -1,4 +1,4 @@
-class_name Gmtk21Config
+class_name MommaDuckConfig
 extends Node
 
 
@@ -125,18 +125,19 @@ var _music_manifest := [
 var _colors_manifest := {
     # Scaffolder colors.
     
-    # Should match Project Settings > Application > Boot Splash > Bg Color
-    # Should match Project Settings > Rendering > Environment > Default Clear Color
-    background = Color("2c2c2f"),
+    # Should match Project Settings > Application > Boot Splash > Bg Color.
+    # Should match
+    #     Project Settings > Rendering > Environment > Default Clear Color.
+    background = Color("2f4034"),
     font = Color("eeeeee"),
-    header_font = Color("eeeeee"),
-    button = Color("777777"),
-    shiny_button_highlight = Color("18ffff"),
+    header_font = Color("fffaaa"),
+    button = Color("24803b"),
+    shiny_button_highlight = Color("98cc70"),
     button_disabled_hsv_delta = {h=0.0, s=-0.4, v=0.15, a=-0.2},
     button_focused_hsv_delta = {h=-0.03, s=-0.15, v=0.15},
     button_hover_hsv_delta = {h=-0.03, s=-0.15, v=0.15},
     button_pressed_hsv_delta = {h=0.05, s=-0.05, v=-0.1},
-    dropdown = Color("2c2c2f"),
+    dropdown = Color("2f4034"),
     tooltip = Color("080808"),
     tooltip_bg = Color("bbbbbb"),
     dropdown_disabled_hsv_delta = {h=0.0, s=-0.4, v=0.15, a=-0.2},
@@ -190,7 +191,7 @@ var _metric_keys := [
 
 var _debug_params := {
 #    limit_parsing = {
-#        player_name = "gmtk21_player",
+#        player_name = "momma",
 #
 #        edge_type = EdgeType.JUMP_INTER_SURFACE_EDGE,
 ##        edge_type = EdgeType.CLIMB_OVER_WALL_TO_FLOOR_EDGE,
@@ -250,7 +251,7 @@ var _edge_movement_classes := [
 ]
 
 var _player_param_classes := [
-    preload("res://src/players/gmtk21_player/gmtk21_player_params.gd"),
+    preload("res://src/players/momma/momma_params.gd"),
 ]
 
 var app_manifest := {
@@ -284,7 +285,7 @@ var app_manifest := {
     is_music_speed_change_supported = false,
     is_music_speed_scaled_with_time_scale = false,
     is_music_speed_scaled_with_additional_debug_time_scale = true,
-    default_player_name = 'gmtk21_player',
+    default_player_name = 'momma',
     nav_selection_slow_mo_time_scale = 0.02,
     nav_selection_slow_mo_tick_tock_tempo_multiplier = 50,
     nav_selection_slow_mo_saturation = 0.2,
@@ -318,8 +319,8 @@ var app_manifest := {
     is_human_prediction_shown = true,
     is_computer_prediction_shown = true,
     
-    app_name = "TODO",
-    app_id = "dev.levi.TODO",
+    app_name = "Momma Duck",
+    app_id = "dev.levi.momma_duck",
     app_version = "0.0.1",
     score_version = "0.0.1",
     data_agreement_version = "0.0.1",
@@ -332,9 +333,8 @@ var app_manifest := {
     ios_app_store_url = "",
     support_url = "",
     log_gestures_url = "",
-    error_logs_url = \
-            "https://storage.googleapis.com/upload/storage/v1/b/TODO-logs/o",
-    app_id_query_param = "TODO",
+    error_logs_url = "",
+    app_id_query_param = "",
     
     theme = preload("res://src/config/default_theme.tres"),
     

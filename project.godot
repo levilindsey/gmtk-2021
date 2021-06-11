@@ -284,6 +284,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/scaffolder/src/gui/labeled_control_list/dropdown_labeled_control_item.gd"
 }, {
+"base": "Player",
+"class": "Duckling",
+"language": "GDScript",
+"path": "res://src/players/duckling/duckling.gd"
+}, {
+"base": "PlayerAnimator",
+"class": "DucklingAnimator",
+"language": "GDScript",
+"path": "res://src/players/duckling/duckling_animator.gd"
+}, {
+"base": "MovementParams",
+"class": "DucklingParams",
+"language": "GDScript",
+"path": "res://src/players/duckling/duckling_params.gd"
+}, {
 "base": "InspectorItemController",
 "class": "DummyItemController",
 "language": "GDScript",
@@ -569,6 +584,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/surfacer/src/gui/platform_graph_inspector/inspector_item_controllers/surfaces_group/floors_item_controller.gd"
 }, {
+"base": "Player",
+"class": "Fox",
+"language": "GDScript",
+"path": "res://src/players/fox/fox.gd"
+}, {
+"base": "PlayerAnimator",
+"class": "FoxAnimator",
+"language": "GDScript",
+"path": "res://src/players/fox/fox_animator.gd"
+}, {
+"base": "MovementParams",
+"class": "FoxParams",
+"language": "GDScript",
+"path": "res://src/players/fox/fox_params.gd"
+}, {
 "base": "EdgeCalculator",
 "class": "FromAirCalculator",
 "language": "GDScript",
@@ -618,31 +648,6 @@ _global_script_classes=[ {
 "class": "GlobalCountsGroupItemController",
 "language": "GDScript",
 "path": "res://addons/surfacer/src/gui/platform_graph_inspector/inspector_item_controllers/profiler_group/global_counts_group_item_controller.gd"
-}, {
-"base": "Node",
-"class": "Gmtk21Config",
-"language": "GDScript",
-"path": "res://src/config/gmtk21_config.gd"
-}, {
-"base": "Player",
-"class": "Gmtk21Player",
-"language": "GDScript",
-"path": "res://src/players/gmtk21_player/gmtk21_player.gd"
-}, {
-"base": "PlayerAnimator",
-"class": "Gmtk21PlayerAnimator",
-"language": "GDScript",
-"path": "res://src/players/gmtk21_player/gmtk21_player_animator.gd"
-}, {
-"base": "MovementParams",
-"class": "Gmtk21PlayerParams",
-"language": "GDScript",
-"path": "res://src/players/gmtk21_player/gmtk21_player_params.gd"
-}, {
-"base": "SurfacesTileMap",
-"class": "Gmtk21TileMap",
-"language": "GDScript",
-"path": "res://src/levels/gmtk21_tile_map.gd"
 }, {
 "base": "Screen",
 "class": "GodotSplashScreen",
@@ -903,6 +908,31 @@ _global_script_classes=[ {
 "class": "MetronomeSettingsLabeledControlItem",
 "language": "GDScript",
 "path": "res://addons/surfacer/src/gui/settings_items/metronome_settings_labeled_control_item.gd"
+}, {
+"base": "Player",
+"class": "Momma",
+"language": "GDScript",
+"path": "res://src/players/momma/momma.gd"
+}, {
+"base": "PlayerAnimator",
+"class": "MommaAnimator",
+"language": "GDScript",
+"path": "res://src/players/momma/momma_animator.gd"
+}, {
+"base": "Node",
+"class": "MommaDuckConfig",
+"language": "GDScript",
+"path": "res://src/config/momma_duck_config.gd"
+}, {
+"base": "SurfacesTileMap",
+"class": "MommaDuckTileMap",
+"language": "GDScript",
+"path": "res://src/levels/momma_duck_tile_map.gd"
+}, {
+"base": "MovementParams",
+"class": "MommaParams",
+"language": "GDScript",
+"path": "res://src/players/momma/momma_params.gd"
 }, {
 "base": "Reference",
 "class": "MovementParams",
@@ -1670,6 +1700,9 @@ _global_script_class_icons={
 "DiscreteEdgeTrajectoryLegendItem": "",
 "DrawUtils": "",
 "DropdownLabeledControlItem": "",
+"Duckling": "",
+"DucklingAnimator": "",
+"DucklingParams": "",
 "DummyItemController": "",
 "Edge": "",
 "EdgeAnnotationElement": "",
@@ -1727,6 +1760,9 @@ _global_script_class_icons={
 "FloorJumpAction": "",
 "FloorWalkAction": "",
 "FloorsItemController": "",
+"Fox": "",
+"FoxAnimator": "",
+"FoxParams": "",
 "FromAirCalculator": "",
 "FromAirEdge": "",
 "FullScreenPanel": "res://addons/scaffolder/assets/images/editor_icons/full_screen_panel.png",
@@ -1737,11 +1773,6 @@ _global_script_class_icons={
 "GestureRecord": "",
 "GestureReporter": "",
 "GlobalCountsGroupItemController": "",
-"Gmtk21Config": "",
-"Gmtk21Player": "",
-"Gmtk21PlayerAnimator": "",
-"Gmtk21PlayerParams": "",
-"Gmtk21TileMap": "",
 "GodotSplashScreen": "",
 "GridIndicesAnnotator": "",
 "HapticFeedbackSettingsLabeledControlItem": "",
@@ -1794,6 +1825,11 @@ _global_script_class_icons={
 "MainMenuScreen": "",
 "MatchExpectedEdgeTrajectoryAction": "",
 "MetronomeSettingsLabeledControlItem": "",
+"Momma": "",
+"MommaAnimator": "",
+"MommaDuckConfig": "",
+"MommaDuckTileMap": "",
+"MommaParams": "",
 "MovementParams": "",
 "MovementUtils": "",
 "MusicSettingsLabeledControlItem": "",
@@ -1940,7 +1976,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GMTK 2021"
+config/name="Momma Duck"
 run/main_scene="res://src/config/main.tscn"
 boot_splash/image="res://addons/scaffolder/assets/images/gui/godot_logo_splash.png"
 boot_splash/bg_color=Color( 0.12549, 0.145098, 0.192157, 1 )
@@ -1951,7 +1987,7 @@ config/quit_on_go_back=false
 
 Gs="*res://addons/scaffolder/src/config/scaffolder_config.gd"
 Surfacer="*res://addons/surfacer/src/config/surfacer_config.gd"
-Gmtk21="*res://src/config/gmtk21_config.gd"
+MommaDuck="*res://src/config/momma_duck_config.gd"
 
 [display]
 
@@ -2109,5 +2145,5 @@ common/enable_pause_aware_picking=true
 quality/intended_usage/framebuffer_allocation=1
 quality/intended_usage/framebuffer_allocation.mobile=1
 2d/snapping/use_gpu_pixel_snap=true
-environment/default_clear_color=Color( 0.172549, 0.172549, 0.184314, 1 )
+environment/default_clear_color=Color( 0.184314, 0.25098, 0.203922, 1 )
 environment/default_environment="res://src/config/default_env.tres"

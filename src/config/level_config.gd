@@ -8,11 +8,11 @@ const LEVELS_PATH_PREFIX := "res://src/levels/"
 
 var level_manifest := {
     "1": {
-        name = "Gmtk21 level",
+        name = "Test level",
         version = "0.0.1",
         priority = 70,
         scene_path = LEVELS_PATH_PREFIX + "level1.tscn",
-        player_names = ["gmtk21_player"],
+        player_names = ["momma"],
     },
 }
 

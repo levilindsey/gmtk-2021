@@ -1,10 +1,10 @@
 tool
-class_name Gmtk21TileMap
+class_name MommaDuckTileMap
 extends SurfacesTileMap
 
 
 const DEFAULT_TILE_SET := \
-        preload("res://src/levels/gmtk21_tile_set.tres")
+        preload("res://src/levels/momma_duck_tile_set.tres")
 
 
 func _ready() -> void:

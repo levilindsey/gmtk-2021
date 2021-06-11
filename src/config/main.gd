@@ -3,7 +3,7 @@ extends SurfacerBootstrap
 
 
 func _ready() -> void:
-    run(Gmtk21.app_manifest, self)
+    run(MommaDuck.app_manifest, self)
 
 
 #func _amend_app_manifest() -> void:
@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _initialize_framework() -> void:
     ._initialize_framework()
-    Gmtk21.initialize()
+    MommaDuck.initialize()
 
 
 #func _on_app_initialized() -> void:

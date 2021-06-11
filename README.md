@@ -1,4 +1,4 @@
-# GMTK 2021
+# Momma Duck
 
 > _**[Play the game!](https://levi.dev/gmtk21)**_
 
@@ -6,13 +6,9 @@ _TODO: Game plot description / call-to-action_
 
 TODO: Game technical description
 
-TODO: Search/replace all instances of bootstrap with the app name.
-
 This game was created in 48-hours as a submission for the [GMTK 2021 game jam](https://itch.io/jam/gmtk-2021). All design, code, images, sound effects, and music were created by Levi.
 
-TODO: Link to Twitch stream recording.
-
-## Theme: "TODO"
+## Theme: "Joined together"
 
 TODO: Describe how the game addresses the theme.
 
