@@ -1,19 +1,36 @@
-# gmtk-2021
+# GMTK 2021
 
-> _**[Play the game!](TODO)**_
+> _**[Play the game!](https://levi.dev/gmtk21)**_
 
 _TODO: Game plot description / call-to-action_
 
 TODO: Game technical description
 
+TODO: Search/replace all instances of bootstrap with the app name.
+
+This game was created in 48-hours as a submission for the [GMTK 2021 game jam](https://itch.io/jam/gmtk-2021). All design, code, images, sound effects, and music were created by Levi.
+
+TODO: Link to Twitch stream recording.
+
+## Theme: "TODO"
+
+TODO: Describe how the game addresses the theme.
+
 ## Software used
 
--   [Godot](https://godotengine.org/): Game engine.
--   [Aseprite](https://www.aseprite.org/): Pixel-art image editor.
--   [Bfxr](https://www.bfxr.net/): Sound effects editor.
--   [DefleMask](https://deflemask.com/): Chiptune music tracker.
--   [Scaffolder](https://godotengine.org/asset-library/asset/969): A framework from the Godot Asset Library that enables procedural path-finding across 2D platforms.
--   [Surfacer](https://godotengine.org/asset-library/asset/968): A framework from the Godot Asset Library that provides some general app infrastructure.
+-   **[Godot](https://godotengine.org/)**: Game engine.
+-   **[Aseprite](https://www.aseprite.org/)**: Pixel-art image editor.
+-   **[Bfxr](https://www.bfxr.net/)**: Sound effects editor.
+-   **[DefleMask](https://deflemask.com/)**: Chiptune music tracker.
+-   **[Scaffolder](https://godotengine.org/asset-library/asset/969)**: A framework from the Godot Asset Library that provides some general app infrastructure.
+    -   Here are some of the features used:
+        -   UI and camera scaling to adapt to the current viewport.
+        -   Analytics.
+        -   Automatic crash log reporting.
+        -   Screen layout and navigation.
+        -   Utility functions (e.g., Time, Geometry, DrawUtils, Audio).
+        -   A widget library (e.g., AccordionPanel, LabeledControlList).
+-   **[Surfacer](https://godotengine.org/asset-library/asset/968)**: A framework from the Godot Asset Library that provides procedural path-finding across 2D platforms.
 
 ## Licenses
 
