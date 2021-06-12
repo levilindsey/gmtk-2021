@@ -2,6 +2,11 @@ class_name Duckling
 extends Duck
 
 
+var EXCLAMATION_MARK_WIDTH_START := 4.0
+var EXCLAMATION_MARK_LENGTH_START := 24.0
+var EXCLAMATION_MARK_STROKE_WIDTH_START := 1.2
+var EXCLAMATION_MARK_DURATION := 1.8
+
 var leash_annotator: LeashAnnotator
 
 var is_logging_events := false
@@ -61,7 +66,12 @@ func _process_sounds() -> void:
 
 
 func _show_exclamation_mark() -> void:
-    Surfacer.annotators.add_transient(ExclamationMarkAnnotator.new(self))
+    Surfacer.annotators.add_transient(ExclamationMarkAnnotator.new(
+            self,
+            EXCLAMATION_MARK_WIDTH_START,
+            EXCLAMATION_MARK_LENGTH_START,
+            EXCLAMATION_MARK_STROKE_WIDTH_START,
+            EXCLAMATION_MARK_DURATION))
 
 
 func on_attached_to_leader() -> void:
