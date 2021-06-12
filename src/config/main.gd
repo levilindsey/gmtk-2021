@@ -19,8 +19,13 @@ func _initialize_framework() -> void:
     MommaDuck.initialize()
 
 
-#func _on_app_initialized() -> void:
-#    ._on_app_initialized()
+func _on_app_initialized() -> void:
+    ._on_app_initialized()
+    
+    # Hide this annatotator by default.
+    Surfacer.annotators.set_annotator_enabled(
+            AnnotatorType.RECENT_MOVEMENT,
+            false)
 
 
 #func _on_splash_finished() -> void:
