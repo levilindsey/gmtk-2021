@@ -1,11 +1,11 @@
-class_name Duckling
+class_name RunAwayDuckling
 extends Duck
 
 
 var leash_annotator: LeashAnnotator
 
 
-func _init().("duckling") -> void:
+func _init().("run_away_duckling") -> void:
     pass
 
 
@@ -56,45 +56,3 @@ func _process_sounds() -> void:
     
     if surface_state.just_left_air:
         Gs.audio.play_sound("land")
-
-
-func _show_exclamation_mark() -> void:
-    Surfacer.annotators.add_transient(ExclamationMarkAnnotator.new(self))
-
-
-func on_attached_to_leader() -> void:
-    _show_exclamation_mark()
-
-
-func on_detached_from_leader() -> void:
-    _show_exclamation_mark()
-
-
-func on_touched_enemy(enemy: KinematicBody2D) -> void:
-    _show_exclamation_mark()
-    
-    if start_surface == null:
-        return
-    
-    var destination := PositionAlongSurfaceFactory \
-            .create_position_offset_from_target_point(
-                    start_position,
-                    start_surface,
-                    movement_params.collider_half_width_height,
-                    true)
-    navigator.navigate_to_position(destination)
-    
-    # FIXME: ----------------------
-    # - Swap self with a run_away_duckling player.
-    # - Run back to spawn point
-    #   - Swap run_away_duckling with duckling when reached destination.
-    # - Trigger sound
-
-
-func _on_PondDetectionArea_area_entered(area: Area2D) -> void:
-    if !Gs.level.is_momma_level_started:
-        return
-    
-    # FIXME: ---------------
-    # - check if all ducklings and momma are in pond; if so, trigger win.
-    pass

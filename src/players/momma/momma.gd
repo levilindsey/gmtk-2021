@@ -17,3 +17,18 @@ func _process_sounds() -> void:
     
     if surface_state.just_left_air:
         Gs.audio.play_sound("land")
+
+
+func on_touched_enemy(enemy: KinematicBody2D) -> void:
+    # FIXME: ---------------
+    # - play sound
+    pass
+
+
+func _on_PondDetectionArea_area_entered(area: Area2D) -> void:
+    if !Gs.level.is_momma_level_started:
+        return
+    
+    # FIXME: ---------------
+    # - check if all ducklings and momma are in pond; if so, trigger win.
+    pass

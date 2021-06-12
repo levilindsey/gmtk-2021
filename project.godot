@@ -489,6 +489,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/surfacer/src/annotators/element_annotator.gd"
 }, {
+"base": "TransientAnnotator",
+"class": "ExclamationMarkAnnotator",
+"language": "GDScript",
+"path": "res://addons/surfacer/src/annotators/transient_annotators/exclamation_mark_annotator.gd"
+}, {
 "base": "ColorRect",
 "class": "FadeTransition",
 "language": "GDScript",
@@ -989,11 +994,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/surfacer/src/annotators/navigator_annotator.gd"
 }, {
-"base": "TransientAnnotator",
-"class": "NewNavExclamationMarkAnnotator",
-"language": "GDScript",
-"path": "res://addons/surfacer/src/annotators/transient_annotators/new_nav_exclamation_mark_annotator.gd"
-}, {
 "base": "Screen",
 "class": "NotificationScreen",
 "language": "GDScript",
@@ -1204,6 +1204,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/surfacer/src/gui/legend/legend_items/polyline_legend_item.gd"
 }, {
+"base": "Player",
+"class": "Porcupine",
+"language": "GDScript",
+"path": "res://src/players/porcupine/porcupine.gd"
+}, {
+"base": "PlayerAnimator",
+"class": "PorcupineAnimator",
+"language": "GDScript",
+"path": "res://src/players/porcupine/porcupine_animator.gd"
+}, {
+"base": "MovementParams",
+"class": "PorcupineParams",
+"language": "GDScript",
+"path": "res://src/players/porcupine/porcupine_params.gd"
+}, {
 "base": "Reference",
 "class": "PositionAlongSurface",
 "language": "GDScript",
@@ -1283,6 +1298,16 @@ _global_script_classes=[ {
 "class": "RulerAnnotatorSettingsLabeledControlItem",
 "language": "GDScript",
 "path": "res://addons/surfacer/src/gui/settings_items/ruler_annotator_settings_labeled_control_item.gd"
+}, {
+"base": "Duck",
+"class": "RunAwayDuckling",
+"language": "GDScript",
+"path": "res://src/players/run_away_duckling/run_away_duckling.gd"
+}, {
+"base": "DucklingParams",
+"class": "RunAwayDucklingParams",
+"language": "GDScript",
+"path": "res://src/players/run_away_duckling/run_away_duckling_params.gd"
 }, {
 "base": "Node",
 "class": "SaveState",
@@ -1398,6 +1423,16 @@ _global_script_classes=[ {
 "class": "SoundEffectsSettingsLabeledControlItem",
 "language": "GDScript",
 "path": "res://addons/scaffolder/src/gui/settings_items/sound_effects_settings_labeled_control_item.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Spider",
+"language": "GDScript",
+"path": "res://src/players/spider/spider.gd"
+}, {
+"base": "PlayerAnimator",
+"class": "SpiderAnimator",
+"language": "GDScript",
+"path": "res://src/players/spider/spider_animator.gd"
 }, {
 "base": "TextLabeledControlItem",
 "class": "StaticTextLabeledControlItem",
@@ -1761,6 +1796,7 @@ _global_script_class_icons={
 "EdgesWithOneStepGroupItemController": "",
 "EdgesWithoutIncreasingJumpHeightGroupItemController": "",
 "ElementAnnotator": "",
+"ExclamationMarkAnnotator": "",
 "FadeTransition": "",
 "FailedEdgeAttempt": "",
 "FailedEdgeAttemptAnnotationElement": "",
@@ -1861,7 +1897,6 @@ _global_script_class_icons={
 "NavigationPulseAnnotator": "",
 "Navigator": "",
 "NavigatorAnnotator": "",
-"NewNavExclamationMarkAnnotator": "",
 "NotificationScreen": "",
 "OnBeatHashAnnotator": "",
 "OriginLegendItem": "",
@@ -1904,6 +1939,9 @@ _global_script_class_icons={
 "PointerSelectionPosition": "",
 "PolylineAnnotationElement": "",
 "PolylineLegendItem": "",
+"Porcupine": "",
+"PorcupineAnimator": "",
+"PorcupineParams": "",
 "PositionAlongSurface": "",
 "PositionAlongSurfaceFactory": "",
 "PrecomputePlatformGraphsScreen": "",
@@ -1920,6 +1958,8 @@ _global_script_class_icons={
 "Rope": "",
 "RulerAnnotator": "",
 "RulerAnnotatorSettingsLabeledControlItem": "",
+"RunAwayDuckling": "",
+"RunAwayDucklingParams": "",
 "SaveState": "",
 "ScaffolderBootstrap": "",
 "ScaffolderCheckBox": "res://addons/scaffolder/assets/images/editor_icons/scaffolder_check_box.png",
@@ -1943,6 +1983,8 @@ _global_script_class_icons={
 "SlowMotionController": "",
 "SlowMotionMusic": "",
 "SoundEffectsSettingsLabeledControlItem": "",
+"Spider": "",
+"SpiderAnimator": "",
 "StaticTextLabeledControlItem": "",
 "Stopwatch": "",
 "StyleBoxFlatScalable": "",
@@ -2152,9 +2194,12 @@ pointing/emulate_touch_from_mouse=true
 
 2d_physics/layer_1="collidable_tilemaps"
 2d_render/layer_2="player"
+2d_physics/layer_2="pond"
 2d_render/layer_3="tiles"
 2d_render/layer_4="background"
-2d_physics/layer_4="player"
+2d_physics/layer_4="momma"
+2d_physics/layer_5="duckling"
+2d_physics/layer_6="enemy"
 
 [logging]
 

@@ -1,25 +1,25 @@
-class_name MommaParams
+class_name PorcupineParams
 extends MovementParams
 
 
 func _init_params() -> void:
-    name = "momma"
+    name = "porcupine"
     player_resource_path = \
-            "res://src/players/momma/momma.tscn"
+            "res://src/players/porcupine/porcupine.tscn"
     
     can_grab_walls = false
     can_grab_ceilings = false
     can_grab_floors = true
-    can_jump = true
+    can_jump = false
     can_dash = false
     
-    var shape := CircleShape2D.new()
-    shape.radius = 24.0
+    var shape := RectangleShape2D.new()
+    shape.extents = Vector2(22.0, 16.0)
     collider_shape = shape
     collider_rotation = 0.0
     
     var fall_from_floor_shape := RectangleShape2D.new()
-    fall_from_floor_shape.extents = Vector2(shape.radius, shape.radius)
+    fall_from_floor_shape.extents = shape.extents
     fall_from_floor_corner_calc_shape = fall_from_floor_shape
     fall_from_floor_corner_calc_shape_rotation = 0.0
     
@@ -103,20 +103,15 @@ func _init_params() -> void:
     action_handler_names = [
         AirDashAction.NAME,
         AirDefaultAction.NAME,
-        AirJumpAction.NAME,
         AllDefaultAction.NAME,
         CapVelocityAction.NAME,
         FloorDashAction.NAME,
         FloorDefaultAction.NAME,
-        FloorFallThroughAction.NAME,
-        FloorJumpAction.NAME,
         FloorWalkAction.NAME,
         FloorFrictionAction.NAME,
     ]
     
     edge_calculator_names = [
-        FallFromFloorCalculator.NAME,
-        JumpFromSurfaceCalculator.NAME,
     ]
 
 
@@ -124,7 +119,7 @@ func _init_animator_params() -> void:
     animator_params = PlayerAnimatorParams.new()
     
     animator_params.player_animator_scene_path = \
-            "res://src/players/momma/momma_animator.tscn"
+            "res://src/players/porcupine/porcupine_animator.tscn"
     
     animator_params.faces_right_by_default = false
     

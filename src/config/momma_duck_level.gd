@@ -5,18 +5,31 @@ extends SurfacerLevel
 
 const DUCKLING_RESOURCE_PATH := "res://src/players/duckling/duckling.tscn"
 const FOX_RESOURCE_PATH := "res://src/players/fox/fox.tscn"
+const PORCUPINE_RESOURCE_PATH := "res://src/players/porcupine/porcupine.tscn"
+const SPIDER_RESOURCE_PATH := "res://src/players/spider/spider.tscn"
 
 const DUCKLING_SPAWN_POSITIONS_GROUP_NAME := "duckling_spawn_positions"
 const FOX_SPAWN_POSITIONS_GROUP_NAME := "fox_spawn_positions"
+const PORCUPINE_SPAWN_POSITIONS_GROUP_NAME := "porcupine_spawn_positions"
+const SPIDER_SPAWN_POSITIONS_GROUP_NAME := "spider_spawn_positions"
 
 var duckling_spawn_positions := []
 var fox_spawn_positions := []
+var porcupine_spawn_positions := []
+var spider_spawn_positions := []
 
 var momma: Momma
-var fox: Fox
 # Array<Duckling>
 var ducklings := []
+# Array<Fox>
+var foxes := []
+# Array<Porcupine>
+var porcupines := []
+# Array<Spider>
+var spiders := []
+
 var last_attached_duck: Duck
+var is_momma_level_started := false
 
 
 #func _enter_tree() -> void:
@@ -37,6 +50,10 @@ func _start() -> void:
             DUCKLING_SPAWN_POSITIONS_GROUP_NAME)
     fox_spawn_positions = Gs.utils.get_all_nodes_in_group(
             FOX_SPAWN_POSITIONS_GROUP_NAME)
+    porcupine_spawn_positions = Gs.utils.get_all_nodes_in_group(
+            PORCUPINE_SPAWN_POSITIONS_GROUP_NAME)
+    spider_spawn_positions = Gs.utils.get_all_nodes_in_group(
+            SPIDER_SPAWN_POSITIONS_GROUP_NAME)
     
     for spawn_position in duckling_spawn_positions:
         var duckling: Duckling = add_player(
@@ -45,6 +62,30 @@ func _start() -> void:
                 false)
         ducklings.push_back(duckling)
         duckling.call_deferred("create_leash_annotator")
+    
+    for spawn_position in fox_spawn_positions:
+        var fox: Fox = add_player(
+                FOX_RESOURCE_PATH,
+                spawn_position.position,
+                false)
+        foxes.push_back(fox)
+    
+    for spawn_position in porcupine_spawn_positions:
+        var porcupine: Porcupine = add_player(
+                PORCUPINE_RESOURCE_PATH,
+                spawn_position.position,
+                false)
+        porcupines.push_back(porcupine)
+    
+    for spawn_position in spider_spawn_positions:
+        var spider: Spider = add_spider(spawn_position.position)
+        spiders.push_back(spider)
+    
+    call_deferred("_on_started")
+
+
+func _on_started() -> void:
+    is_momma_level_started = true
 
 
 func _destroy() -> void:
@@ -54,8 +95,17 @@ func _destroy() -> void:
         remove_player(duckling)
     ducklings.clear()
     
-    if is_instance_valid(fox):
+    for fox in foxes:
         remove_player(fox)
+    foxes.clear()
+    
+    for spider in spiders:
+        remove_player(spider)
+    spiders.clear()
+    
+    for porcupine in porcupines:
+        remove_player(porcupine)
+    porcupines.clear()
     
     if is_instance_valid(momma):
         remove_player(momma)
@@ -81,6 +131,17 @@ func _physics_process(_delta: float) -> void:
     momma.clear_just_changed_attachment()
     for duckling in ducklings:
         duckling.clear_just_changed_attachment()
+
+
+func add_spider(position: Vector2) -> Spider:
+    var player: Spider = Gs.utils.add_scene(
+            self,
+            SPIDER_RESOURCE_PATH,
+            false,
+            true)
+    player.position = position
+    add_child(player)
+    return player
 
 
 func get_music_name() -> String:

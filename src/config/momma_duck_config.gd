@@ -251,9 +251,11 @@ var _edge_movement_classes := [
 ]
 
 var _player_param_classes := [
-    preload("res://src/players/momma/momma_params.gd"),
     preload("res://src/players/duckling/duckling_params.gd"),
     preload("res://src/players/fox/fox_params.gd"),
+    preload("res://src/players/momma/momma_params.gd"),
+    preload("res://src/players/porcupine/porcupine_params.gd"),
+    preload("res://src/players/run_away_duckling/run_away_duckling_params.gd"),
 ]
 
 var app_manifest := {
@@ -308,6 +310,8 @@ var app_manifest := {
     duration_to_max_pan_from_pointer_at_max_control = 0.67,
     duration_to_max_zoom_from_pointer_at_max_control = 3.0,
     screen_size_ratio_distance_from_edge_to_start_pan_from_pointer = 0.3,
+    
+    skip_choreography_framerate_multiplier = 4.0,
     
     is_human_current_nav_trajectory_shown_with_slow_mo = false,
     is_computer_current_nav_trajectory_shown_with_slow_mo = true,
@@ -428,7 +432,7 @@ var app_manifest := {
     aspect_ratio_max = 2.0 / 1.0,
     aspect_ratio_min = 1.0 / 2.0,
     camera_smoothing_speed = 10.0,
-    default_camera_zoom = 1.0,
+    default_camera_zoom = 0.4,
     uses_level_scores = true,
 }
 

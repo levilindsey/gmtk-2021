@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/players/momma/momma_animator.gd" type="Script" id=1]
-[ext_resource path="res://assets/images/momma_spritesheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/momma.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "ClimbDown"

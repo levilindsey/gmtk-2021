@@ -10,17 +10,16 @@ func _init_params() -> void:
     can_grab_walls = false
     can_grab_ceilings = false
     can_grab_floors = true
+    can_jump = true
     can_dash = false
     
-    var shape := CapsuleShape2D.new()
-    shape.radius = 10.0
-    shape.height = 10.0
+    var shape := RectangleShape2D.new()
+    shape.extents = Vector2(22.0, 16.0)
     collider_shape = shape
     collider_rotation = 0.0
     
     var fall_from_floor_shape := RectangleShape2D.new()
-    fall_from_floor_shape.extents = \
-            Vector2(shape.radius, shape.radius + shape.height / 2.0)
+    fall_from_floor_shape.extents = shape.extents
     fall_from_floor_corner_calc_shape = fall_from_floor_shape
     fall_from_floor_corner_calc_shape_rotation = 0.0
     
@@ -112,21 +111,11 @@ func _init_params() -> void:
         FloorJumpAction.NAME,
         FloorWalkAction.NAME,
         FloorFrictionAction.NAME,
-        WallClimbAction.NAME,
-        WallDashAction.NAME,
-        WallDefaultAction.NAME,
-        WallFallAction.NAME,
-        WallJumpAction.NAME,
-        WallWalkAction.NAME,
     ]
     
     edge_calculator_names = [
-        ClimbOverWallToFloorCalculator.NAME,
-        FallFromWallCalculator.NAME,
         FallFromFloorCalculator.NAME,
         JumpFromSurfaceCalculator.NAME,
-        ClimbDownWallToFloorCalculator.NAME,
-        WalkToAscendWallFromFloorCalculator.NAME,
     ]
 
 

@@ -23,6 +23,9 @@ const FAR_ENOUGH_TO_START_NAVIGATING_DISTANCE_SQUARED := \
 var leader: Duck
 var follower: Duck
 
+var start_position := Vector2.INF
+var start_surface: Surface
+
 var is_attached_to_leader := false
 var just_attached_to_leader := false
 var just_detached_from_leader := false
@@ -38,8 +41,17 @@ func _init(player_name: String).(player_name) -> void:
     pass
 
 
+func _ready() -> void:
+    start_position = position
+
+
 func _update_surface_state(preserves_just_changed_state := false) -> void:
     ._update_surface_state(preserves_just_changed_state)
+    
+    if surface_state.just_grabbed_floor and \
+            start_surface == null:
+        start_surface = surface_state.grabbed_surface
+    
     _update_attachment()
 
 
@@ -106,6 +118,13 @@ func _update_attachment() -> void:
     else:
         is_close_enough_to_leader_to_stop_moving = false
         is_far_enough_from_leader_to_start_moving = false
+    
+    if just_attached_to_leader:
+        on_attached_to_leader()
+    
+    if just_detached_from_leader:
+        on_detached_from_leader()
+
 
 func on_leader_detached() -> void:
     leader.is_attached_to_follower = false
@@ -120,3 +139,18 @@ func on_leader_detached() -> void:
     
     if is_attached_to_follower:
         follower.on_leader_detached()
+    
+    if just_detached_from_leader:
+        on_detached_from_leader()
+
+
+func on_attached_to_leader() -> void:
+    pass
+
+
+func on_detached_from_leader() -> void:
+    pass
+
+
+func on_touched_enemy(enemy: KinematicBody2D) -> void:
+    pass

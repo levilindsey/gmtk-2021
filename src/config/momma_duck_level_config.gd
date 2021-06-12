@@ -8,11 +8,37 @@ const LEVELS_PATH_PREFIX := "res://src/levels/"
 
 var level_manifest := {
     "1": {
-        name = "Test level",
+        name = "Level 1",
         version = "0.0.1",
         priority = 70,
         scene_path = LEVELS_PATH_PREFIX + "level1.tscn",
-        platform_graph_player_names = ["momma", "duckling"],
+        platform_graph_player_names = [
+            "momma",
+            "duckling",
+            "run_away_duckling",
+            "porcupine",
+            "fox",
+        ],
+        intro_choreography = [
+            {
+                is_user_interaction_enabled = false,
+                zoom = 0.5,
+            },
+            {
+                duration = 0.3,
+            },
+            {
+                destination = SurfacerLevelConfig \
+                        .INTRO_CHOREOGRAPHY_DESTINATION_GROUP_NAME,
+            },
+            {
+                duration = 0.4,
+                zoom = 1.0,
+            },
+            {
+                is_user_interaction_enabled = true,
+            },
+        ],
     },
 }
 

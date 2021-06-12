@@ -1,27 +1,22 @@
-class_name DucklingParams
-extends MommaParams
+class_name RunAwayDucklingParams
+extends DucklingParams
 
 
 func _init_params() -> void:
     ._init_params()
-
-    name = "duckling"
+    
+    name = "run_away_duckling"
     player_resource_path = \
-    "res://src/players/duckling/duckling.tscn"
+            "res://src/players/run_away_duckling/run_away_duckling.tscn"
     
-    collider_shape.radius = 8.0
+    gravity_fast_fall = Gs.geometry.GRAVITY * 1.0
     
-    fall_from_floor_corner_calc_shape.extents = \
-            Vector2(collider_shape.radius, collider_shape.radius)
+    jump_boost *= 2.0
+    in_air_horizontal_acceleration *= 2.0
+    walk_acceleration *= 3.0
     
-    gravity_fast_fall = Gs.geometry.GRAVITY * 0.8
-    
-    jump_boost *= 0.95
-    in_air_horizontal_acceleration *= 0.8
-    walk_acceleration *= 0.7
-    
-    max_horizontal_speed_default *= 0.7
-    max_vertical_speed *= 0.8
+    max_horizontal_speed_default *= 2.0
+    max_vertical_speed *= 1.5
     
     uses_duration_instead_of_distance_for_edge_weight = true
     additional_edge_weight_offset = 128.0
@@ -34,7 +29,7 @@ func _init_animator_params() -> void:
     animator_params = PlayerAnimatorParams.new()
     
     animator_params.player_animator_scene_path = \
-            "res://src/players/duckling/duckling_animator.tscn"
+            "res://src/players/run_away_duckling/run_away_duckling_animator.tscn"
     
     animator_params.faces_right_by_default = false
     

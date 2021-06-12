@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/momma_spritesheet.png-e519896178ff7240c897b16f1c96e6cb.stex"
+path="res://.import/momma.png-9fdeb602841f9da6c90b9943ddf5a6cb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/momma_spritesheet.png"
-dest_files=[ "res://.import/momma_spritesheet.png-e519896178ff7240c897b16f1c96e6cb.stex" ]
+source_file="res://assets/images/momma.png"
+dest_files=[ "res://.import/momma.png-9fdeb602841f9da6c90b9943ddf5a6cb.stex" ]
 
 [params]
 
