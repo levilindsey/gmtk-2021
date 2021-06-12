@@ -16,6 +16,7 @@ extents = Vector2( 22, 16 )
 [node name="Fox" type="KinematicBody2D"]
 collision_layer = 32
 script = ExtResource( 1 )
+wander_pause_duration = 2.0
 
 [node name="FoxAnimator" parent="." instance=ExtResource( 2 )]
 

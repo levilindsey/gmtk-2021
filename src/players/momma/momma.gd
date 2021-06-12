@@ -26,7 +26,8 @@ func on_touched_enemy(enemy: KinematicBody2D) -> void:
 
 
 func _on_PondDetectionArea_area_entered(area: Area2D) -> void:
-    if !Gs.level.is_momma_level_started:
+    if is_fake or \
+            !Gs.level.is_momma_level_started:
         return
     
     # FIXME: ---------------

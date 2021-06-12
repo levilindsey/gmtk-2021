@@ -4,9 +4,9 @@ extends KinematicBody2D
 # This a hazard that moves up-and-down.
 
 
-export var range_y := 384.0
-export var speed := 200.0
-export var pause_at_end_duration := 0.3
+export var range_y := 196.0
+export var speed := 50.0
+export var pause_at_end_duration := 3.0
 
 var animator: SpiderAnimator
 
@@ -16,6 +16,8 @@ var is_moving_down := true
 var just_reached_end := false
 var just_started_moving := false
 var reached_end_time := -pause_at_end_duration
+
+var is_logging_events := false
 
 
 func _ready() -> void:
@@ -45,7 +47,7 @@ func _physics_process(delta: float) -> void:
             if position.y >= start_position.y + range_y / 2.0:
                 just_reached_end = true
         else:
-            if position.y <= start_position.y + range_y / 2.0:
+            if position.y <= start_position.y - range_y / 2.0:
                 just_reached_end = true
 
         if just_reached_end:
@@ -56,6 +58,12 @@ func _physics_process(delta: float) -> void:
             is_moving = true
             just_started_moving = true
             is_moving_down = !is_moving_down
+    
+    if is_logging_events:
+        if just_reached_end:
+            Gs.logger.print("Spider just reached end")
+        if just_started_moving:
+            Gs.logger.print("Spider just started moving")
     
     _update_animator()
 
@@ -68,9 +76,14 @@ func _climb_away_from_momma() -> void:
         # Already moving away.
         return
     
+    if is_logging_events:
+        Gs.logger.print("Spider climb-away-from-momma start")
+    
     is_moving = true
     just_started_moving = true
     is_moving_down = !is_momma_below
+    
+    _update_animator()
 
 
 func _update_animator() -> void:
@@ -88,6 +101,13 @@ func _update_animator() -> void:
 func _on_DuckCollisionDetectionArea_body_entered(duck: Duck) -> void:
     if !Gs.level.is_momma_level_started:
         return
+    
+    if is_logging_events:
+        Gs.logger.print("Spider collided with %s" % (
+            "momma" if \
+            duck is Momma else \
+            "duckling"
+        ))
     
     if duck is Momma:
         _climb_away_from_momma()

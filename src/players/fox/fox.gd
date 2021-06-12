@@ -4,14 +4,14 @@ extends Player
 # This is a hazard that jumps at nearby ducklings, if momma isn't nearby.
 
 
-const RUN_FROM_MOMMA_DISTANCE_THRESHOLD := 256.0
+const RUN_FROM_MOMMA_DISTANCE_THRESHOLD := 128.0
 const RUN_FROM_MOMMA_DISTANCE_SQUARED_THRESHOLD := \
         RUN_FROM_MOMMA_DISTANCE_THRESHOLD * RUN_FROM_MOMMA_DISTANCE_THRESHOLD
 
-const RUN_FROM_MOMMA_DESTINATION_DISTANCE := 512.0
+const RUN_FROM_MOMMA_DESTINATION_DISTANCE := 256.0
 
 export var wander_radius := 256.0
-export var wander_pause_duration := 2.0
+export var wander_pause_duration := 4.0
 
 var start_position := Vector2.INF
 var start_surface: Surface = null
@@ -20,6 +20,8 @@ var is_pouncing_on_duckling := false
 var is_wandering := false
 var last_navigation_end_time := 0
 var target_duckling: Duckling
+
+var is_logging_events := false
 
 
 func _init().("fox") -> void:
@@ -65,7 +67,8 @@ func _update_navigator(delta_scaled: float) -> void:
         is_wandering = false
         last_navigation_end_time = current_time
     
-    if current_time >= last_navigation_end_time + wander_pause_duration:
+    if !navigator.is_currently_navigating and \
+            current_time >= last_navigation_end_time + wander_pause_duration:
         _trigger_wander()
 
 
@@ -84,6 +87,9 @@ func _run_from_momma() -> void:
 
 
 func _navigate_to_new_position_away_from_momma() -> void:
+    if is_logging_events:
+        Gs.logger.print("Fox run-from-momma start")
+    
     var direction_away_from_momma: Vector2 = \
             Gs.level.momma.position.direction_to(position)
     var naive_target := \
@@ -94,18 +100,25 @@ func _navigate_to_new_position_away_from_momma() -> void:
     # to it.
     var destination_target := \
             graph_destination_for_in_air_destination.target_point + \
-            Vector2(0.0, 0.1)
+            Vector2(0.0, -0.1)
     var destination := \
             PositionAlongSurfaceFactory.create_position_without_surface(
                     destination_target)
     
-    navigator.navigate_to_position(
+    var was_navigation_successful := navigator.navigate_to_position(
             destination, graph_destination_for_in_air_destination)
+    if !was_navigation_successful:
+        # Try again, but without the in-air destination.
+        navigator.navigate_to_position(
+                graph_destination_for_in_air_destination)
 
 
 func _trigger_wander() -> void:
     if start_surface == null:
         return
+    
+    if is_logging_events:
+        Gs.logger.print("Fox wander start")
     
     is_wandering = true
     var left_most_point := Gs.geometry.project_point_onto_surface(
@@ -133,6 +146,12 @@ func _process_sounds() -> void:
 
 
 func _on_DucklingDetectionArea_body_entered(duckling: Duckling):
+    if is_fake:
+        return
+    
+    if is_logging_events:
+        Gs.logger.print("Fox is close to duckling")
+    
     if !Gs.level.is_momma_level_started or \
             is_running_from_momma or \
             is_pouncing_on_duckling:
@@ -154,6 +173,9 @@ func _on_DucklingDetectionArea_body_entered(duckling: Duckling):
 
 
 func _pounce_on_duckling(duckling: Duckling) -> void:
+    if is_logging_events:
+        Gs.logger.print("Fox pounce-on-duckling start")
+    
     is_pouncing_on_duckling = true
     target_duckling = duckling
     
@@ -161,14 +183,13 @@ func _pounce_on_duckling(duckling: Duckling) -> void:
             duckling.surface_state.center_position_along_surface if \
             duckling.surface_state.is_grabbing_a_surface else \
             SurfaceParser.find_closest_position_on_a_surface(
-                    duckling.surface_state.center_position_along_surface \
-                            .target_point,
+                    duckling.position,
                     self)
     # Offset the destination a little, and make it in-air, so the fox will jump
     # to it.
     var destination_target := \
             graph_destination_for_in_air_destination.target_point + \
-            Vector2(0.0, 0.1)
+            Vector2(0.0, -0.1)
     var destination := \
             PositionAlongSurfaceFactory.create_position_without_surface(
                     destination_target)
@@ -178,8 +199,16 @@ func _pounce_on_duckling(duckling: Duckling) -> void:
 
 
 func _on_DuckCollisionDetectionArea_body_entered(duck: Duck) -> void:
-    if !Gs.level.is_momma_level_started:
+    if is_fake or \
+            !Gs.level.is_momma_level_started:
         return
+    
+    if is_logging_events:
+        Gs.logger.print("Fox collided with %s" % (
+            "momma" if \
+            duck is Momma else \
+            "duckling"
+        ))
     
     if duck is Momma:
         _run_from_momma()

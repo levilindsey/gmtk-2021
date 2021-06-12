@@ -4,6 +4,8 @@ extends Duck
 
 var leash_annotator: LeashAnnotator
 
+var is_logging_events := false
+
 
 func _init().("duckling") -> void:
     pass
@@ -92,7 +94,8 @@ func on_touched_enemy(enemy: KinematicBody2D) -> void:
 
 
 func _on_PondDetectionArea_area_entered(area: Area2D) -> void:
-    if !Gs.level.is_momma_level_started:
+    if is_fake or \
+            !Gs.level.is_momma_level_started:
         return
     
     # FIXME: ---------------

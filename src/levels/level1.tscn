@@ -27,7 +27,7 @@ __meta__ = {
 }
 
 [node name="MommaSpawnPosition" parent="MommaSpawnPositions" instance=ExtResource( 6 )]
-position = Vector2( 0, -224 )
+position = Vector2( -320, -64 )
 
 [node name="MommaChoreographyDestination" parent="MommaSpawnPositions" instance=ExtResource( 2 )]
 position = Vector2( 32, 0 )

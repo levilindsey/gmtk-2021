@@ -3,9 +3,11 @@ extends Player
 # This is a hazard that moves side-to-side along a surface.
 
 
-const DISTANCE_FROM_END_FOR_TURN_AROUND := 20.0
+# NOTE: This should be slightly wider than half the porcupine width, to prevent
+#       a problem with the edge case of concave neigbor walls.
+const DISTANCE_FROM_END_FOR_TURN_AROUND := 25.0
 
-const RUN_FROM_MOMMA_DISTANCE_THRESHOLD := 256.0
+const RUN_FROM_MOMMA_DISTANCE_THRESHOLD := 128.0
 const RUN_FROM_MOMMA_DISTANCE_SQUARED_THRESHOLD := \
         RUN_FROM_MOMMA_DISTANCE_THRESHOLD * RUN_FROM_MOMMA_DISTANCE_THRESHOLD
 
@@ -13,6 +15,8 @@ var just_turned := false
 var is_walking_left := false
 var start_position := Vector2.INF
 var surface: Surface
+
+var is_logging_events := false
 
 
 func _init().("porcupine") -> void:
@@ -43,15 +47,17 @@ func _update_navigator(delta_scaled: float) -> void:
     var right_end := surface.last_point
     
     var new_destination: PositionAlongSurface
-    if position.x <= left_end.x + DISTANCE_FROM_END_FOR_TURN_AROUND:
+    if is_walking_left and \
+            position.x <= left_end.x + DISTANCE_FROM_END_FOR_TURN_AROUND:
         is_walking_left = false
         new_destination = PositionAlongSurfaceFactory \
                 .create_position_offset_from_target_point(
-                        left_end,
+                        right_end,
                         surface,
                         movement_params.collider_half_width_height,
                         true)
-    elif position.x >= right_end.x - DISTANCE_FROM_END_FOR_TURN_AROUND:
+    elif !is_walking_left and \
+            position.x >= right_end.x - DISTANCE_FROM_END_FOR_TURN_AROUND:
         is_walking_left = true
         new_destination = PositionAlongSurfaceFactory \
                 .create_position_offset_from_target_point(
@@ -60,7 +66,26 @@ func _update_navigator(delta_scaled: float) -> void:
                         movement_params.collider_half_width_height,
                         true)
     
+    var was_navigating := navigator.is_currently_navigating
+    if new_destination == null and \
+            !was_navigating:
+        is_walking_left = !is_walking_left
+        var target_end := left_end if is_walking_left else right_end
+        new_destination = PositionAlongSurfaceFactory \
+                .create_position_offset_from_target_point(
+                        target_end,
+                        surface,
+                        movement_params.collider_half_width_height,
+                        true)
+    
     if new_destination != null:
+        if is_logging_events:
+            Gs.logger.print(
+                    ("Porcupine just turned: " +
+                    "is_walking_left=%s, " +
+                    "was_navigating=%s") % \
+                    [is_walking_left, was_navigating])
+        
         just_turned = true
         navigator.navigate_to_position(new_destination)
     
@@ -79,6 +104,9 @@ func _walk_away_from_momma() -> void:
     
     var is_momma_to_the_left: bool = Gs.level.momma.position.x < position.x
     if is_momma_to_the_left == is_walking_left:
+        if is_logging_events:
+            Gs.logger.print("Porcupine walk-away-from-momma start")
+            
         is_walking_left = !is_walking_left
         just_turned = true
         
@@ -96,8 +124,16 @@ func _walk_away_from_momma() -> void:
 
 
 func _on_DuckCollisionDetectionArea_body_entered(duck: Duck) -> void:
-    if !Gs.level.is_momma_level_started:
+    if is_fake or \
+            !Gs.level.is_momma_level_started:
         return
+    
+    if is_logging_events:
+        Gs.logger.print("Porcupine collided with %s" % (
+            "momma" if \
+            duck is Momma else \
+            "duckling"
+        ))
     
     if duck is Momma:
         _walk_away_from_momma()

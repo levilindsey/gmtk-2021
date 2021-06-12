@@ -258,6 +258,12 @@ var _player_param_classes := [
     preload("res://src/players/run_away_duckling/run_away_duckling_params.gd"),
 ]
 
+var welcome_panel_items := [
+    StaticTextLabeledControlItem.new("*Auto nav*", "click"),
+    StaticTextLabeledControlItem.new("Walk/Climb", "arrow key / wasd"),
+    StaticTextLabeledControlItem.new("Jump", "space / x"),
+]
+
 var app_manifest := {
     # TODO: Remember to reset these when creating releases.
     precompute_platform_graph_for_levels = [
@@ -363,6 +369,7 @@ var app_manifest := {
     game_over_item_class_inclusions = [],
     level_select_item_class_exclusions = [],
     level_select_item_class_inclusions = [],
+    welcome_panel_items = welcome_panel_items,
     
     colors_class = SurfacerColors,
     draw_utils_class = SurfacerDrawUtils,

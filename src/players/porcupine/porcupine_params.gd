@@ -33,9 +33,9 @@ func _init_params() -> void:
     jump_boost = -900.0
     in_air_horizontal_acceleration = 2100.0
     
-    walk_acceleration = 9000.0
+    walk_acceleration = 80.0
     
-    max_horizontal_speed_default = 320.0
+    max_horizontal_speed_default = 40.0
     min_horizontal_speed = 5.0
     max_vertical_speed = 1800.0
     min_vertical_speed = 0.0
@@ -57,7 +57,7 @@ func _init_params() -> void:
     air_edge_weight_multiplier = 1.0
     
     max_jump_chain = 1
-    wall_jump_horizontal_boost = 190.0
+    wall_jump_horizontal_boost = 30.0
     wall_fall_horizontal_boost = 20.0
     climb_up_speed = -230.0
     climb_down_speed = 120.0
