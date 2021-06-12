@@ -25,14 +25,16 @@ func _update_navigator(delta_scaled: float) -> void:
     
     if is_attached_to_leader:
         if navigator.is_currently_navigating:
-            if navigator.navigation_state.just_reached_end_of_edge and \
+            if is_close_enough_to_leader_to_stop_moving:
+                navigator.stop()
+            elif navigator.navigation_state.just_reached_end_of_edge and \
                     surface_state.just_left_air:
                 # -   We are currently navigating, and we just landed on a new
                 #     surface.
                 # -   Update the navigation to point to the current leader
                 #     position.
                 _trigger_new_navigation()
-        else:
+        elif !is_far_enough_from_leader_to_start_moving:
             # We weren't yet navigating anywhere, so start navigating to the
             # leader.
             _trigger_new_navigation()

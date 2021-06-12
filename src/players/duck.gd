@@ -10,12 +10,24 @@ const LEASH_ATTACH_DISTANCE_SQUARED := \
 const LEASH_DETACH_DISTANCE_SQUARED := \
         LEASH_DETACH_DISTANCE * LEASH_DETACH_DISTANCE
 
+const CLOSE_ENOUGH_TO_STOP_NAVIGATING_DISTANCE := 64.0
+const CLOSE_ENOUGH_TO_STOP_NAVIGATING_DISTANCE_SQUARED := \
+        CLOSE_ENOUGH_TO_STOP_NAVIGATING_DISTANCE * \
+        CLOSE_ENOUGH_TO_STOP_NAVIGATING_DISTANCE
+
+const FAR_ENOUGH_TO_START_NAVIGATING_DISTANCE := 96.0
+const FAR_ENOUGH_TO_START_NAVIGATING_DISTANCE_SQUARED := \
+        FAR_ENOUGH_TO_START_NAVIGATING_DISTANCE * \
+        FAR_ENOUGH_TO_START_NAVIGATING_DISTANCE
+
 var leader: Duck
 var follower: Duck
 
 var is_attached_to_leader := false
 var just_attached_to_leader := false
 var just_detached_from_leader := false
+var is_close_enough_to_leader_to_stop_moving := false
+var is_far_enough_from_leader_to_start_moving := false
 
 var is_attached_to_follower := false
 var just_attached_to_follower := false
@@ -81,6 +93,19 @@ func _update_attachment() -> void:
         leader = null
         if is_attached_to_follower:
             follower.on_leader_detached()
+    
+    if is_attached_to_leader:
+        var distance_squared_to_leader := \
+                position.distance_squared_to(leader.position)
+        is_close_enough_to_leader_to_stop_moving = \
+                distance_squared_to_leader <= \
+                CLOSE_ENOUGH_TO_STOP_NAVIGATING_DISTANCE_SQUARED
+        is_far_enough_from_leader_to_start_moving = \
+                distance_squared_to_leader <= \
+                FAR_ENOUGH_TO_START_NAVIGATING_DISTANCE_SQUARED
+    else:
+        is_close_enough_to_leader_to_stop_moving = false
+        is_far_enough_from_leader_to_start_moving = false
 
 func on_leader_detached() -> void:
     leader.is_attached_to_follower = false
