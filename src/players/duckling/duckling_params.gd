@@ -10,30 +10,29 @@ func _init_params() -> void:
     can_grab_walls = false
     can_grab_ceilings = false
     can_grab_floors = true
+    can_dash = false
     
-    var shape := CapsuleShape2D.new()
+    var shape := CircleShape2D.new()
     shape.radius = 10.0
-    shape.height = 10.0
     collider_shape = shape
     collider_rotation = 0.0
     
     var fall_from_floor_shape := RectangleShape2D.new()
-    fall_from_floor_shape.extents = \
-            Vector2(shape.radius, shape.radius + shape.height / 2.0)
+    fall_from_floor_shape.extents = Vector2(shape.radius, shape.radius)
     fall_from_floor_corner_calc_shape = fall_from_floor_shape
     fall_from_floor_corner_calc_shape_rotation = 0.0
     
     climb_over_wall_corner_calc_shape = collider_shape
     climb_over_wall_corner_calc_shape_rotation = collider_rotation
     
-    gravity_fast_fall = Gs.geometry.GRAVITY
+    gravity_fast_fall = Gs.geometry.GRAVITY * 0.85
     slow_rise_gravity_multiplier = 0.38
     rise_double_jump_gravity_multiplier = 0.68
     
-    jump_boost = -1000.0
-    in_air_horizontal_acceleration = 3200.0
+    jump_boost = -440.0
+    in_air_horizontal_acceleration = 1700.0
     max_jump_chain = 2
-    wall_jump_horizontal_boost = 280.0
+    wall_jump_horizontal_boost = 190.0
     wall_fall_horizontal_boost = 20.0
     
     walk_acceleration = 7000.0
@@ -78,9 +77,9 @@ func _init_params() -> void:
     reached_in_air_destination_distance_squared_threshold = 16.0 * 16.0
     max_edges_to_remove_from_end_of_path_for_optimization_to_in_air_destination = 2
     
-    max_horizontal_speed_default = 400.0
+    max_horizontal_speed_default = 210.0
     min_horizontal_speed = 5.0
-    max_vertical_speed = 2800.0
+    max_vertical_speed = 1300.0
     min_vertical_speed = 0.0
     
     fall_through_floor_velocity_boost = 100.0

@@ -10,6 +10,7 @@ func _init_params() -> void:
     can_grab_walls = false
     can_grab_ceilings = false
     can_grab_floors = true
+    can_dash = false
     
     var shape := CapsuleShape2D.new()
     shape.radius = 10.0

@@ -3,8 +3,7 @@
 [ext_resource path="res://src/players/duckling/duckling.gd" type="Script" id=1]
 [ext_resource path="res://src/players/duckling/duckling_animator.tscn" type="PackedScene" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
-height = 10.0
+[sub_resource type="CircleShape2D" id=1]
 
 [node name="Duckling" type="KinematicBody2D"]
 collision_layer = 0
