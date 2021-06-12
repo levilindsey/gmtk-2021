@@ -2,8 +2,13 @@ class_name Duck
 extends Player
 
 
-const MAX_LEASH_DISTANCE := 768.0
-const MAX_LEASH_DISTANCE_SQUARED := MAX_LEASH_DISTANCE * MAX_LEASH_DISTANCE
+const LEASH_ATTACH_DISTANCE := 128.0
+const LEASH_DETACH_DISTANCE := 768.0
+
+const LEASH_ATTACH_DISTANCE_SQUARED := \
+        LEASH_ATTACH_DISTANCE * LEASH_ATTACH_DISTANCE
+const LEASH_DETACH_DISTANCE_SQUARED := \
+        LEASH_DETACH_DISTANCE * LEASH_DETACH_DISTANCE
 
 var leader: Duck
 var follower: Duck
@@ -46,12 +51,12 @@ func _update_attachment() -> void:
     if was_attached_to_leader:
         is_attached_to_leader = \
                 position.distance_squared_to(leader.position) < \
-                MAX_LEASH_DISTANCE_SQUARED
+                LEASH_DETACH_DISTANCE_SQUARED
     else:
         is_attached_to_leader = \
                 position.distance_squared_to(
                         Gs.level.last_attached_duck.position) < \
-                MAX_LEASH_DISTANCE_SQUARED
+                LEASH_ATTACH_DISTANCE_SQUARED
     
     just_attached_to_leader = \
             !was_attached_to_leader and \
