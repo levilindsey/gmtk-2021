@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/levi_logo_about.png-5700c09b3503763a8224f52bfde8d3f7.stex"
+path="res://.import/duckling_spritesheet.png-13613c0890b326c8808a0dc46ade949e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/gui/levi_logo_about.png"
-dest_files=[ "res://.import/levi_logo_about.png-5700c09b3503763a8224f52bfde8d3f7.stex" ]
+source_file="res://assets/images/duckling_spritesheet.png"
+dest_files=[ "res://.import/duckling_spritesheet.png-13613c0890b326c8808a0dc46ade949e.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

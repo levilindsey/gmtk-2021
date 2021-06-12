@@ -13,7 +13,7 @@ func _init_params() -> void:
     can_dash = false
     
     var shape := CircleShape2D.new()
-    shape.radius = 10.0
+    shape.radius = 24.0
     collider_shape = shape
     collider_rotation = 0.0
     
@@ -29,7 +29,7 @@ func _init_params() -> void:
     slow_rise_gravity_multiplier = 0.38
     rise_double_jump_gravity_multiplier = 0.68
     
-    jump_boost = -670.0
+    jump_boost = -900.0
     in_air_horizontal_acceleration = 2100.0
     max_jump_chain = 2
     wall_jump_horizontal_boost = 190.0
@@ -134,7 +134,7 @@ func _init_animator_params() -> void:
     animator_params.player_animator_scene_path = \
             "res://src/players/momma/momma_animator.tscn"
     
-    animator_params.faces_right_by_default = true
+    animator_params.faces_right_by_default = false
     
     animator_params.rest_name = "Rest"
     animator_params.rest_on_wall_name = "RestOnWall"

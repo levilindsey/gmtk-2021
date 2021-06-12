@@ -4,6 +4,7 @@
 [ext_resource path="res://src/players/momma/momma_animator.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 24.0
 
 [node name="Momma" type="KinematicBody2D"]
 collision_layer = 0

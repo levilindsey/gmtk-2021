@@ -399,14 +399,14 @@ var app_manifest := {
     special_thanks_text = """
 """,
     
-    app_logo = preload("res://assets/images/gui/logo.png"),
+    app_logo = preload("res://assets/images/logo.png"),
     app_logo_scale = 2.0,
-    go_icon = preload("res://assets/images/gui/go_icon.png"),
+    go_icon = preload("res://assets/images/go_icon.png"),
     go_icon_scale = 1.5,
     developer_name = "Levi Lindsey",
     developer_url = "https://levi.dev",
     
-    developer_logo = preload("res://assets/images/gui/levi_logo_about.png"),
+    developer_logo = preload("res://assets/images/levi_logo_about.png"),
     developer_splash = null,
     
     godot_splash_screen_duration = 0.8,

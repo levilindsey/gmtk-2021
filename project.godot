@@ -2004,7 +2004,7 @@ config/name="Momma Duck"
 run/main_scene="res://src/config/main.tscn"
 boot_splash/image="res://addons/scaffolder/assets/images/gui/godot_logo_splash.png"
 boot_splash/bg_color=Color( 0.12549, 0.145098, 0.192157, 1 )
-config/icon="res://assets/images/icon-128.png"
+config/icon="res://assets/images/icon_128.png"
 config/quit_on_go_back=false
 
 [autoload]
