@@ -1299,7 +1299,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/surfacer/src/gui/settings_items/ruler_annotator_settings_labeled_control_item.gd"
 }, {
-"base": "Duck",
+"base": "Player",
 "class": "RunAwayDuckling",
 "language": "GDScript",
 "path": "res://src/players/run_away_duckling/run_away_duckling.gd"

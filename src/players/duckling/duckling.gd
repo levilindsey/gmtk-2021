@@ -2,10 +2,11 @@ class_name Duckling
 extends Duck
 
 
-var EXCLAMATION_MARK_WIDTH_START := 4.0
-var EXCLAMATION_MARK_LENGTH_START := 24.0
-var EXCLAMATION_MARK_STROKE_WIDTH_START := 1.2
-var EXCLAMATION_MARK_DURATION := 1.8
+const EXCLAMATION_MARK_COLOR := Color("dec535")
+const EXCLAMATION_MARK_WIDTH_START := 4.0
+const EXCLAMATION_MARK_LENGTH_START := 24.0
+const EXCLAMATION_MARK_STROKE_WIDTH_START := 1.2
+const EXCLAMATION_MARK_DURATION := 1.8
 
 var leash_annotator: LeashAnnotator
 
@@ -68,6 +69,8 @@ func _process_sounds() -> void:
 func _show_exclamation_mark() -> void:
     Surfacer.annotators.add_transient(ExclamationMarkAnnotator.new(
             self,
+            movement_params.collider_half_width_height.y,
+            EXCLAMATION_MARK_COLOR,
             EXCLAMATION_MARK_WIDTH_START,
             EXCLAMATION_MARK_LENGTH_START,
             EXCLAMATION_MARK_STROKE_WIDTH_START,
@@ -76,31 +79,49 @@ func _show_exclamation_mark() -> void:
 
 func on_attached_to_leader() -> void:
     _show_exclamation_mark()
+    
+    # FIXME: ----------------------
+    # - Trigger sound
 
 
 func on_detached_from_leader() -> void:
     _show_exclamation_mark()
+    
+    # FIXME: ----------------------
+    # - Trigger sound
 
 
 func on_touched_enemy(enemy: KinematicBody2D) -> void:
-    _show_exclamation_mark()
-    
     if start_surface == null:
         return
     
-    var destination := PositionAlongSurfaceFactory \
-            .create_position_offset_from_target_point(
-                    start_position,
-                    start_surface,
-                    movement_params.collider_half_width_height,
-                    true)
-    navigator.navigate_to_position(destination)
+    _show_exclamation_mark()
     
     # FIXME: ----------------------
-    # - Swap self with a run_away_duckling player.
-    # - Run back to spawn point
-    #   - Swap run_away_duckling with duckling when reached destination.
     # - Trigger sound
+    
+    if is_logging_events:
+        Gs.logger.print("Duckling touched an enemy")
+    
+    if is_attached_to_leader:
+        Gs.level.last_attached_duck = leader
+        leader.is_attached_to_follower = false
+        leader.just_attached_to_follower = false
+        leader.just_detached_from_follower = true
+        leader.follower = null
+        just_attached_to_leader = false
+        just_detached_from_leader = true
+    if is_attached_to_follower:
+        follower.on_leader_detached()
+        just_attached_to_follower = false
+        just_detached_from_follower = true
+    
+    is_attached_to_leader = false
+    leader = null
+    is_attached_to_follower = false
+    follower = null
+    
+    Gs.level.swap_duckling_with_run_away(self, enemy)
 
 
 func _on_PondDetectionArea_area_entered(area: Area2D) -> void:

@@ -10,6 +10,12 @@ const RUN_FROM_MOMMA_DISTANCE_SQUARED_THRESHOLD := \
 
 const RUN_FROM_MOMMA_DESTINATION_DISTANCE := 256.0
 
+const EXCLAMATION_MARK_COLOR := Color("ff6053")
+const EXCLAMATION_MARK_WIDTH_START := 4.0
+const EXCLAMATION_MARK_LENGTH_START := 24.0
+const EXCLAMATION_MARK_STROKE_WIDTH_START := 1.2
+const EXCLAMATION_MARK_DURATION := 1.8
+
 export var wander_radius := 256.0
 export var wander_pause_duration := 4.0
 
@@ -89,6 +95,8 @@ func _run_from_momma() -> void:
 func _navigate_to_new_position_away_from_momma() -> void:
     if is_logging_events:
         Gs.logger.print("Fox run-from-momma start")
+    
+    _show_exclamation_mark()
     
     var direction_away_from_momma: Vector2 = \
             Gs.level.momma.position.direction_to(position)
@@ -176,6 +184,8 @@ func _pounce_on_duckling(duckling: Duckling) -> void:
     if is_logging_events:
         Gs.logger.print("Fox pounce-on-duckling start")
     
+    _show_exclamation_mark()
+    
     is_pouncing_on_duckling = true
     target_duckling = duckling
     
@@ -221,3 +231,14 @@ func _on_DuckCollisionDetectionArea_body_entered(duck: Duck) -> void:
             target_duckling = null
             navigator.stop()
             duck.on_touched_enemy(self)
+
+
+func _show_exclamation_mark() -> void:
+    Surfacer.annotators.add_transient(ExclamationMarkAnnotator.new(
+            self,
+            movement_params.collider_half_width_height.y,
+            EXCLAMATION_MARK_COLOR,
+            EXCLAMATION_MARK_WIDTH_START,
+            EXCLAMATION_MARK_LENGTH_START,
+            EXCLAMATION_MARK_STROKE_WIDTH_START,
+            EXCLAMATION_MARK_DURATION))

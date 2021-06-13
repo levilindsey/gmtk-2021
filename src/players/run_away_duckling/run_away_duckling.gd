@@ -1,53 +1,45 @@
 class_name RunAwayDuckling
-extends Duck
+extends Player
 
 
-var leash_annotator: LeashAnnotator
+var destination: PositionAlongSurface
+
+var is_logging_events := false
 
 
 func _init().("run_away_duckling") -> void:
     pass
 
 
-func create_leash_annotator() -> void:
-    leash_annotator = LeashAnnotator.new(self)
-    Surfacer.annotators.get_player_annotator(self).add_child(leash_annotator)
-
-
-func _destroy() -> void:
-    if is_instance_valid(leash_annotator):
-        leash_annotator.queue_free()
-    ._destroy()
-
-
-func _update_navigator(delta_scaled: float) -> void:
-    ._update_navigator(delta_scaled)
+func run_away(
+        destination: PositionAlongSurface,
+        enemy: KinematicBody2D) -> void:
+    self.destination = destination
     
-    if is_attached_to_leader:
-        if navigator.is_currently_navigating:
-            if is_close_enough_to_leader_to_stop_moving:
-                navigator.stop()
-            elif navigator.navigation_state.just_reached_end_of_edge and \
-                    surface_state.just_left_air:
-                # -   We are currently navigating, and we just landed on a new
-                #     surface.
-                # -   Update the navigation to point to the current leader
-                #     position.
-                _trigger_new_navigation()
-        elif !is_far_enough_from_leader_to_start_moving:
-            # We weren't yet navigating anywhere, so start navigating to the
-            # leader.
-            _trigger_new_navigation()
+    # The newly-created surface-state thinks we're in-air anyway, so let's make
+    # it a little more real.
+    self.set_position(position + Vector2(0.0, -0.1))
+    
+    # Give the run-away an initial jump away from the enemy.
+    velocity.y = movement_params.jump_boost
+    velocity.x = movement_params.max_horizontal_speed_default * 0.5
+    var is_left_of_enemy := position.x < enemy.position.x
+    if is_left_of_enemy:
+        velocity.x *= -1
+    
+    navigator.connect("destination_reached", self, "_on_destination_reached")
+    var did_navigation_succeed := navigator.navigate_to_position(destination)
+    if !did_navigation_succeed:
+        Gs.logger.print("Run-away navigation path-finding was not successful")
+        Gs.level.swap_run_away_with_duckling(self)
+    
+    _show_exclamation_mark()
 
 
-func _trigger_new_navigation() -> void:
-    var destination: PositionAlongSurface
-    if leader.surface_state.is_grabbing_a_surface:
-        destination = leader.surface_state.center_position_along_surface
-    else:
-        destination = SurfaceParser.find_closest_position_on_a_surface(
-                leader.position, leader)
-    navigator.navigate_to_position(destination)
+func _on_destination_reached() -> void:
+    if is_logging_events:
+        Gs.logger.print("Run-away reached spawn position")
+    Gs.level.swap_run_away_with_duckling(self)
 
 
 func _process_sounds() -> void:
@@ -56,3 +48,14 @@ func _process_sounds() -> void:
     
     if surface_state.just_left_air:
         Gs.audio.play_sound("land")
+
+
+func _show_exclamation_mark() -> void:
+    Surfacer.annotators.add_transient(ExclamationMarkAnnotator.new(
+            self,
+            movement_params.collider_half_width_height.y,
+            Duckling.EXCLAMATION_MARK_COLOR,
+            Duckling.EXCLAMATION_MARK_WIDTH_START,
+            Duckling.EXCLAMATION_MARK_LENGTH_START,
+            Duckling.EXCLAMATION_MARK_STROKE_WIDTH_START,
+            Duckling.EXCLAMATION_MARK_DURATION))

@@ -4,6 +4,14 @@ extends KinematicBody2D
 # This a hazard that moves up-and-down.
 
 
+const EXCLAMATION_MARK_COLOR := Color("783628")
+const EXCLAMATION_MARK_WIDTH_START := 4.0
+const EXCLAMATION_MARK_LENGTH_START := 24.0
+const EXCLAMATION_MARK_STROKE_WIDTH_START := 1.2
+const EXCLAMATION_MARK_DURATION := 1.8
+
+const RADIUS := 24.0
+
 export var range_y := 196.0
 export var speed := 50.0
 export var pause_at_end_duration := 3.0
@@ -79,6 +87,8 @@ func _climb_away_from_momma() -> void:
     if is_logging_events:
         Gs.logger.print("Spider climb-away-from-momma start")
     
+    _show_exclamation_mark()
+    
     is_moving = true
     just_started_moving = true
     is_moving_down = !is_momma_below
@@ -116,6 +126,7 @@ func _on_DuckCollisionDetectionArea_body_entered(duck: Duck) -> void:
         assert(duck is Duckling)
         duck.on_touched_enemy(self)
 
+
 func _create_animator_params() -> PlayerAnimatorParams:
     var animator_params := PlayerAnimatorParams.new()
     
@@ -133,3 +144,14 @@ func _create_animator_params() -> PlayerAnimatorParams:
     animator_params.climb_down_playback_rate = 1.0
     
     return animator_params
+
+
+func _show_exclamation_mark() -> void:
+    Surfacer.annotators.add_transient(ExclamationMarkAnnotator.new(
+            self,
+            RADIUS,
+            EXCLAMATION_MARK_COLOR,
+            EXCLAMATION_MARK_WIDTH_START,
+            EXCLAMATION_MARK_LENGTH_START,
+            EXCLAMATION_MARK_STROKE_WIDTH_START,
+            EXCLAMATION_MARK_DURATION))

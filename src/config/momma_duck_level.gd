@@ -4,6 +4,8 @@ extends SurfacerLevel
 
 
 const DUCKLING_RESOURCE_PATH := "res://src/players/duckling/duckling.tscn"
+const RUN_AWAY_DUCKLING_RESOURCE_PATH := \
+        "res://src/players/run_away_duckling/run_away_duckling.tscn"
 const FOX_RESOURCE_PATH := "res://src/players/fox/fox.tscn"
 const PORCUPINE_RESOURCE_PATH := "res://src/players/porcupine/porcupine.tscn"
 const SPIDER_RESOURCE_PATH := "res://src/players/spider/spider.tscn"
@@ -21,6 +23,8 @@ var spider_spawn_positions := []
 var momma: Momma
 # Array<Duckling>
 var ducklings := []
+# Array<RunAwayDuckling>
+var run_away_ducklings := []
 # Array<Fox>
 var foxes := []
 # Array<Porcupine>
@@ -60,8 +64,8 @@ func _start() -> void:
                 DUCKLING_RESOURCE_PATH,
                 spawn_position.position,
                 false)
-        ducklings.push_back(duckling)
         duckling.call_deferred("create_leash_annotator")
+        ducklings.push_back(duckling)
     
     for spawn_position in fox_spawn_positions:
         var fox: Fox = add_player(
@@ -100,7 +104,7 @@ func _destroy() -> void:
     foxes.clear()
     
     for spider in spiders:
-        remove_player(spider)
+        remove_spider(spider)
     spiders.clear()
     
     for porcupine in porcupines:
@@ -142,6 +146,48 @@ func add_spider(position: Vector2) -> Spider:
     player.position = position
     add_child(player)
     return player
+
+
+func remove_spider(spider: Spider) -> void:
+    remove_child(spider)
+
+
+func swap_duckling_with_run_away(
+        duckling: Duckling,
+        enemy: KinematicBody2D) -> void:
+    assert(duckling.start_surface != null)
+    
+    var run_away_origin := duckling.position
+    var run_away_destination := PositionAlongSurfaceFactory. \
+            create_position_offset_from_target_point(
+                    duckling.start_position,
+                    duckling.start_surface,
+                    duckling.movement_params.collider_half_width_height,
+                    true)
+    
+    ducklings.erase(duckling)
+    remove_player(duckling)
+    
+    var run_away_duckling: RunAwayDuckling = add_player(
+            RUN_AWAY_DUCKLING_RESOURCE_PATH,
+            run_away_origin,
+            false)
+    run_away_ducklings.push_back(run_away_duckling)
+    run_away_duckling.run_away(run_away_destination, enemy)
+
+
+func swap_run_away_with_duckling(run_away_duckling: RunAwayDuckling) -> void:
+    var position := run_away_duckling.position
+    
+    run_away_ducklings.erase(run_away_duckling)
+    remove_player(run_away_duckling)
+    
+    var duckling: Duckling = add_player(
+            DUCKLING_RESOURCE_PATH,
+            position,
+            false)
+    duckling.call_deferred("create_leash_annotator")
+    ducklings.push_back(duckling)
 
 
 func get_music_name() -> String:

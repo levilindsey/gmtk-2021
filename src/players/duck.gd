@@ -67,7 +67,7 @@ func _update_attachment() -> void:
     var was_attached_to_follower := is_attached_to_follower
     
     if was_attached_to_leader:
-        assert(leader != null)
+        assert(is_instance_valid(leader))
     else:
         assert(leader == null)
         assert(follower == null)
