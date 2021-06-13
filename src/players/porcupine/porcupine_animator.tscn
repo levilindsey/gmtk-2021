@@ -114,10 +114,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 0 ]
 }
 
 [node name="PorcupineAnimator" type="Node2D"]
@@ -133,7 +133,6 @@ visible = false
 light_mask = 2
 rotation = -1.5708
 texture = ExtResource( 2 )
-frame = 1
 
 [node name="ClimbDown" type="Sprite" parent="."]
 visible = false

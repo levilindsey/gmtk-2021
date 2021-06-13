@@ -8,6 +8,8 @@ const EXCLAMATION_MARK_LENGTH_START := 24.0
 const EXCLAMATION_MARK_STROKE_WIDTH_START := 1.2
 const EXCLAMATION_MARK_DURATION := 1.8
 
+var leash_attachment_offset := Vector2(2.0, 0.0)
+
 var leash_annotator: LeashAnnotator
 
 var is_logging_events := false

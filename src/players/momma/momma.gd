@@ -2,6 +2,9 @@ class_name Momma
 extends Duck
 
 
+var leash_attachment_offset := Vector2(11.0, -5.0)
+
+
 func _init().("momma") -> void:
     pass
 

@@ -2,11 +2,11 @@ class_name MommaDuckConfig
 extends Node
 
 
-var _debug := OS.is_debug_build()
-#var _debug := false
-var _playtest := true
+#var _debug := OS.is_debug_build()
+var _debug := false
+var _playtest := false
 #var _playtest := false
-var _uses_threads := true and OS.can_use_threads()
+var _uses_threads := false and OS.can_use_threads()
 
 # Useful for getting screenshots at specific resolutions.
 var _screen_resolutions := {
@@ -278,7 +278,6 @@ var _player_param_classes := [
 
 var welcome_panel_items := [
     HeaderLabeledControlItem.new("Lead your ducklings to the pond"),
-#    StaticTextLabeledControlItem.new("          Lead your ducklings to the pond", ""),
     StaticTextLabeledControlItem.new("*Auto nav*", "click"),
     StaticTextLabeledControlItem.new("Walk/Climb", "arrow key / wasd"),
     StaticTextLabeledControlItem.new("Jump", "space / x"),
@@ -288,6 +287,10 @@ var app_manifest := {
     # TODO: Remember to reset these when creating releases.
     precompute_platform_graph_for_levels = [
 #        "1",
+#        "2",
+#        "3",
+#        "4",
+#        "5",
     ],
     ignores_platform_graph_save_files = false,
     ignores_platform_graph_save_file_trajectory_state = false,
@@ -295,7 +298,7 @@ var app_manifest := {
     debug = _debug,
 #    debug = false
     playtest = _playtest,
-    pauses_on_focus_out = false,
+    pauses_on_focus_out = true,
 #    pauses_on_focus_out = true,
     also_prints_to_stdout = true and _debug,
     is_profiler_enabled = true,

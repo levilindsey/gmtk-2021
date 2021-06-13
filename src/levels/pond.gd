@@ -3,9 +3,9 @@ class_name Pond
 extends Area2D
 
 
-export var width := 256.0 setget _set_width
+export var width_cell_count := 8 setget _set_width_cell_count
 
 
-func _set_width(value: float) -> void:
-    width = value
-    $CollisionShape2D.shape.extents.x = width / 2.0
+func _set_width_cell_count(value: int) -> void:
+    width_cell_count = value
+    $CollisionShape2D.shape.extents.x = width_cell_count * 32.0 / 2.0

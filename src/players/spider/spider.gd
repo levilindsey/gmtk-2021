@@ -32,6 +32,8 @@ var _is_destroyed := false
 
 func _ready() -> void:
     start_position = position
+    position.y += randf() * range_y * 0.9 - range_y / 2.0
+    is_moving_down = randf() > 0.5
     animator = $SpiderAnimator
     animator.set_up(_create_animator_params(), true)
 

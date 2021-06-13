@@ -3,7 +3,7 @@ extends Player
 
 
 const LEASH_ATTACH_DISTANCE := 128.0
-const LEASH_DETACH_DISTANCE := 400.0
+const LEASH_DETACH_DISTANCE := 320.0
 
 const LEASH_ATTACH_DISTANCE_SQUARED := \
         LEASH_ATTACH_DISTANCE * LEASH_ATTACH_DISTANCE
@@ -83,10 +83,16 @@ func _update_attachment() -> void:
                 position.distance_squared_to(leader.position) < \
                 LEASH_DETACH_DISTANCE_SQUARED
     else:
-        is_attached_to_leader = \
-                position.distance_squared_to(
-                        Gs.level.last_attached_duck.position) < \
-                LEASH_ATTACH_DISTANCE_SQUARED
+        # Check whether this duck is close to any ducks in the chain.
+        var next_duck: Duck = Gs.level.last_attached_duck
+        while true:
+            is_attached_to_leader = \
+                    position.distance_squared_to(next_duck.position) < \
+                    LEASH_ATTACH_DISTANCE_SQUARED
+            if is_attached_to_leader or \
+                    next_duck.leader == next_duck:
+                break
+            next_duck = next_duck.leader
     
     just_attached_to_leader = \
             !was_attached_to_leader and \

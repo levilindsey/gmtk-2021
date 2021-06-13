@@ -30,7 +30,7 @@ func _init_params() -> void:
     slow_rise_gravity_multiplier = 0.38
     rise_double_jump_gravity_multiplier = 0.68
     
-    jump_boost = -900.0
+    jump_boost = -800.0
     in_air_horizontal_acceleration = 2100.0
     
     walk_acceleration = 9000.0

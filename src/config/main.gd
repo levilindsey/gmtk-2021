@@ -17,6 +17,13 @@ func _ready() -> void:
 func _initialize_framework() -> void:
     ._initialize_framework()
     MommaDuck.initialize()
+    
+    # FIXME: -------------- REMOVE
+#    Gs.save_state.erase_all_state()
+#    for id in Gs.level_config.get_level_ids():
+#        Gs.save_state.set_level_is_unlocked(id, false)
+#        Gs.save_state.erase_level_state(id)
+#    get_tree().quit()
 
 
 func _on_app_initialized() -> void:

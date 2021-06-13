@@ -16,7 +16,7 @@ func _init_params() -> void:
     
     gravity_fast_fall = Gs.geometry.GRAVITY * 0.8
     
-    jump_boost *= 0.95
+    jump_boost *= 0.8
     in_air_horizontal_acceleration *= 0.8
     walk_acceleration *= 0.7
     

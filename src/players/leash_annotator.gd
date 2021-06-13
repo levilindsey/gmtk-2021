@@ -19,23 +19,47 @@ const DISTANCE_SQUARED_TO_START_STRETCHING_AT := \
 var duck
 var leash: Rope
 
+# FIXME: ---------------------
+var render_leash := false
+
 
 func _init(duck) -> void:
     self.duck = duck
-    self.leash = Rope.new()
+    if render_leash:
+        self.leash = Rope.new()
 
 
 func _physics_process(_delta: float) -> void:
     if !is_instance_valid(duck):
         return
-
-    if duck.just_attached_to_leader:
-        leash.on_new_attachment(duck.position, duck.leader.position)
+    
+    if !render_leash:
+        return
     
     if duck.is_attached_to_leader:
-        leash.update_end_positions(duck.position, duck.leader.position)
+        var follower_leash_attachment_offset: Vector2 = \
+                duck.leash_attachment_offset
+        follower_leash_attachment_offset.x *= \
+                duck.surface_state.horizontal_facing_sign
+        
+        var leader_leash_attachment_offset: Vector2 = \
+                duck.leader.leash_attachment_offset
+        leader_leash_attachment_offset.x *= \
+                duck.leader.surface_state.horizontal_facing_sign
+        
+        var follower_attach_point: Vector2 = \
+                duck.position + \
+                follower_leash_attachment_offset
+        var leader_attach_point: Vector2= \
+                duck.leader.position + \
+                leader_leash_attachment_offset
+        
+        if duck.just_attached_to_leader:
+            leash.on_new_attachment(follower_attach_point, leader_attach_point)
+        
+        leash.update_end_positions(follower_attach_point, leader_attach_point)
         leash.on_physics_frame()
-
+    
     if duck.is_attached_to_leader or \
             duck.just_detached_from_leader:
         update()
@@ -43,6 +67,9 @@ func _physics_process(_delta: float) -> void:
 
 func _draw() -> void:
     if !duck.is_attached_to_leader:
+        return
+    
+    if !render_leash:
         return
     
     var vertices := PoolVector2Array()
