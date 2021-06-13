@@ -226,7 +226,7 @@ func _record_level_results() -> void:
 
 
 func get_music_name() -> String:
-    return "on_a_quest"
+    return "momma_music"
 
 
 func get_slow_motion_music_name() -> String:

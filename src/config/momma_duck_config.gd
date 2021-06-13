@@ -105,17 +105,24 @@ var _sounds_manifest := [
         volume_db = 17.0,
         path_prefix = "res://addons/scaffolder/assets/sounds/",
     },
+    {
+        name = "momma_cadence",
+        volume_db = 17.0,
+        path_prefix = "res://assets/sounds/",
+    },
 ]
 
 var _music_manifest := [
     {
-        name = "on_a_quest",
+        name = "momma_music",
+        path_prefix = "res://assets/music/",
         volume_db = 0.0,
-        bpm = 150.0,
+        bpm = 112.5,
         meter = 4,
     },
     {
-        name = "pause_menu",
+        name = "momma_pause_music",
+        path_prefix = "res://assets/music/",
         volume_db = 0.0,
         bpm = 112.5,
         meter = 4,
@@ -402,13 +409,13 @@ var app_manifest := {
     player_param_classes = _player_param_classes,
     
     pauses_level_music_on_pause = true,
-    main_menu_music = "on_a_quest",
-    game_over_music = "on_a_quest",
-    pause_menu_music = "pause_menu",
-    default_level_music = "on_a_quest",
-    godot_splash_sound = "achievement",
+    main_menu_music = "momma_pause_music",
+    game_over_music = "momma_pause_music",
+    pause_menu_music = "momma_pause_music",
+    default_level_music = "momma_music",
+    godot_splash_sound = "momma_cadence",
     developer_splash_sound = "",
-    level_end_sound = "cadence",
+    level_end_sound = "momma_cadence",
     
     third_party_license_text = \
             ScaffolderThirdPartyLicenses.TEXT + \

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/momma_pause_music.ogg-be0a901875fd127b00732eab1797d7e2.oggstr"
+
+[deps]
+
+source_file="res://assets/music/momma_pause_music.ogg"
+dest_files=[ "res://.import/momma_pause_music.ogg-be0a901875fd127b00732eab1797d7e2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

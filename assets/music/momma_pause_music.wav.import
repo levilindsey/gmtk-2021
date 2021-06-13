@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/momma_pause_music.wav-598a2d3bc4659fa0e157862150e1c604.sample"
+
+[deps]
+
+source_file="res://assets/music/momma_pause_music.wav"
+dest_files=[ "res://.import/momma_pause_music.wav-598a2d3bc4659fa0e157862150e1c604.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

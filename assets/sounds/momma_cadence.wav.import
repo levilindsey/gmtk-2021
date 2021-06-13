@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/momma_cadence.wav-9a219b3c8ad3824a076ad2b1c5f01576.sample"
+
+[deps]
+
+source_file="res://assets/sounds/momma_cadence.wav"
+dest_files=[ "res://.import/momma_cadence.wav-9a219b3c8ad3824a076ad2b1c5f01576.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
