@@ -1,6 +1,13 @@
 # Momma Duck
 
 > _**[Play the game!](https://levi.dev/gmtk21)**_
+> 
+> _**[Watch the gameplay video!](https://www.youtube.com/watch?v=QYv0xNa0bO8)**__
+
+<p align="center">
+  <img src="assets/images/icon_1024x768.png"
+       alt="Cover art for the Momma Duck game. It's show's a pixel-art rendering of a momma duck and her three ducklings.">
+</p>
 
 _Collect your ducklings and lead them to safety!_
 
@@ -15,8 +22,6 @@ This game was created in 48-hours as a submission for the [GMTK 2021 game jam](h
 ## Theme: "Joined together"
 
 You are a momma duck. Your precious ducklings follow closely behind you as you lead them to a safe pond.
-
-Your connection to your ducklings is represented with a leash. If you move too far from your ducklings, this leash detaches, and you must go re-join your ducklings before leading them away.
 
 ## Software used
 

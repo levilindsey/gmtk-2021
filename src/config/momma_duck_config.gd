@@ -2,8 +2,8 @@ class_name MommaDuckConfig
 extends Node
 
 
-#var _debug := OS.is_debug_build()
-var _debug := false
+var _debug := OS.is_debug_build()
+#var _debug := false
 var _playtest := false
 #var _playtest := false
 var _uses_threads := false and OS.can_use_threads()
