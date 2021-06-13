@@ -60,32 +60,32 @@ func _start() -> void:
     spider_spawn_positions = Gs.utils.get_all_nodes_in_group(
             SPIDER_SPAWN_POSITIONS_GROUP_NAME)
     
-#    for spawn_position in duckling_spawn_positions:
-#        var duckling: Duckling = add_player(
-#                DUCKLING_RESOURCE_PATH,
-#                spawn_position.position,
-#                false)
-#        duckling.call_deferred("create_leash_annotator")
-#        ducklings.push_back(duckling)
-    
-#    for spawn_position in fox_spawn_positions:
-#        var fox: Fox = add_player(
-#                FOX_RESOURCE_PATH,
-#                spawn_position.position,
-#                false)
-#        foxes.push_back(fox)
-#
-#    for spawn_position in porcupine_spawn_positions:
-#        var porcupine: Porcupine = add_player(
-#                PORCUPINE_RESOURCE_PATH,
-#                spawn_position.position,
-#                false)
-#        porcupines.push_back(porcupine)
-#
-#    for spawn_position in spider_spawn_positions:
-#        var spider: Spider = add_spider(spawn_position.position)
-#        spiders.push_back(spider)
-    
+    for spawn_position in duckling_spawn_positions:
+        var duckling: Duckling = add_player(
+                DUCKLING_RESOURCE_PATH,
+                spawn_position.position,
+                false)
+        duckling.call_deferred("create_leash_annotator")
+        ducklings.push_back(duckling)
+
+    for spawn_position in fox_spawn_positions:
+        var fox: Fox = add_player(
+                FOX_RESOURCE_PATH,
+                spawn_position.position,
+                false)
+        foxes.push_back(fox)
+
+    for spawn_position in porcupine_spawn_positions:
+        var porcupine: Porcupine = add_player(
+                PORCUPINE_RESOURCE_PATH,
+                spawn_position.position,
+                false)
+        porcupines.push_back(porcupine)
+
+    for spawn_position in spider_spawn_positions:
+        var spider: Spider = add_spider(spawn_position.position)
+        spiders.push_back(spider)
+
     call_deferred("_on_started")
 
 
