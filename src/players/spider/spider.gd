@@ -27,11 +27,17 @@ var reached_end_time := -pause_at_end_duration
 
 var is_logging_events := false
 
+var _is_destroyed := false
+
 
 func _ready() -> void:
     start_position = position
     animator = $SpiderAnimator
     animator.set_up(_create_animator_params(), true)
+
+
+func _destroy() -> void:
+    _is_destroyed = true
 
 
 func _physics_process(delta: float) -> void:
@@ -109,7 +115,8 @@ func _update_animator() -> void:
 
 
 func _on_DuckCollisionDetectionArea_body_entered(duck: Duck) -> void:
-    if !Gs.level.is_momma_level_started:
+    if _is_destroyed or \
+            !Gs.level.is_momma_level_started:
         return
     
     if is_logging_events:

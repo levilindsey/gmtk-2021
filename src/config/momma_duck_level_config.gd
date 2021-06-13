@@ -60,10 +60,41 @@ func get_level_ids() -> Array:
 
 
 func get_unlock_hint(level_id: String) -> String:
-    # TODO
-    return "Not yet unlocked" if \
-            !Gs.save_state.get_level_is_unlocked(level_id) else \
-            ""
+    if Gs.save_state.get_level_is_unlocked(level_id):
+        return ""
+    
+    var previous_level_id := get_previous_level_id(level_id)
+    if previous_level_id == "":
+        Utils.error("If this is the first level, it should be unlocked")
+        return ""
+    
+    var settings_key := MommaDuckLevel.get_level_fastest_time_settings_key(
+            previous_level_id)
+    if Gs.save_state.get_setting(settings_key, INF) != INF:
+        return ""
+    
+    return "Finish %s" % get_level_config(previous_level_id).name
+
+
+func get_previous_level_id(level_id: String) -> String:
+    var level_number: int = get_level_config(level_id).number
+    
+    var level_numbers := []
+    for level_id in get_level_ids():
+        var config := get_level_config(level_id)
+        level_numbers.push_back(config.number)
+    level_numbers.sort()
+    
+    for i in level_numbers.size():
+        if level_numbers[i] == level_number:
+            if i == 0:
+                return ""
+            else:
+                return _level_configs_by_number[level_numbers[i - 1]].id
+    
+    Utils.error("The given level_id is invalid: %s" % level_id)
+    
+    return ""
 
 
 func get_suggested_next_level() -> String:

@@ -358,17 +358,24 @@ var app_manifest := {
         "res://addons/scaffolder/src/gui/screens/data_agreement_screen.tscn",
         "res://addons/scaffolder/src/gui/screens/rate_app_screen.tscn",
     ],
-    screen_path_inclusions = [],
+    screen_path_inclusions = [
+    ],
     settings_main_item_class_exclusions = [],
     settings_main_item_class_inclusions = [],
     settings_details_item_class_exclusions = [],
     settings_details_item_class_inclusions = [],
     pause_item_class_exclusions = [],
-    pause_item_class_inclusions = [],
+    pause_item_class_inclusions = [
+        FastestTimeLabeledControlItem,
+    ],
     game_over_item_class_exclusions = [],
-    game_over_item_class_inclusions = [],
+    game_over_item_class_inclusions = [
+        FastestTimeLabeledControlItem,
+    ],
     level_select_item_class_exclusions = [],
-    level_select_item_class_inclusions = [],
+    level_select_item_class_inclusions = [
+        FastestTimeLabeledControlItem,
+    ],
     welcome_panel_items = welcome_panel_items,
     
     colors_class = SurfacerColors,
@@ -440,7 +447,7 @@ var app_manifest := {
     aspect_ratio_min = 1.0 / 2.0,
     camera_smoothing_speed = 10.0,
     default_camera_zoom = 0.4,
-    uses_level_scores = true,
+    uses_level_scores = false,
 }
 
 

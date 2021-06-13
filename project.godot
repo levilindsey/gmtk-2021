@@ -569,6 +569,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/surfacer/src/gui/legend/legend_items/fall_range_without_jump_distance_legend_item.gd"
 }, {
+"base": "TextLabeledControlItem",
+"class": "FastestTimeLabeledControlItem",
+"language": "GDScript",
+"path": "res://src/gui/fastest_time_labeled_control_item.gd"
+}, {
 "base": "PlayerActionHandler",
 "class": "FloorDashAction",
 "language": "GDScript",
@@ -1204,6 +1209,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/surfacer/src/gui/legend/legend_items/polyline_legend_item.gd"
 }, {
+"base": "Area2D",
+"class": "Pond",
+"language": "GDScript",
+"path": "res://src/levels/pond.gd"
+}, {
 "base": "Player",
 "class": "Porcupine",
 "language": "GDScript",
@@ -1812,6 +1822,7 @@ _global_script_class_icons={
 "FallRangeWithJumpDistanceLegendItem": "",
 "FallRangeWithoutJumpDistanceAnnotationElement": "",
 "FallRangeWithoutJumpDistanceLegendItem": "",
+"FastestTimeLabeledControlItem": "",
 "FloorDashAction": "",
 "FloorDefaultAction": "",
 "FloorFallThroughAction": "",
@@ -1939,6 +1950,7 @@ _global_script_class_icons={
 "PointerSelectionPosition": "",
 "PolylineAnnotationElement": "",
 "PolylineLegendItem": "",
+"Pond": "",
 "Porcupine": "",
 "PorcupineAnimator": "",
 "PorcupineParams": "",

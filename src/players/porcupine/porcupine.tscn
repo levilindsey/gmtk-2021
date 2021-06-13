@@ -20,6 +20,7 @@ position = Vector2( 0, 8 )
 shape = SubResource( 1 )
 
 [node name="DuckCollisionDetectionArea" type="Area2D" parent="."]
+monitorable = false
 collision_layer = 0
 collision_mask = 24
 

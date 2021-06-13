@@ -23,10 +23,12 @@ __meta__ = {
 }
 
 [node name="PondDetectionArea" type="Area2D" parent="."]
+monitorable = false
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PondDetectionArea"]
 shape = SubResource( 2 )
 
-[connection signal="area_shape_entered" from="PondDetectionArea" to="." method="_on_PondDetectionArea_area_shape_entered"]
+[connection signal="area_entered" from="PondDetectionArea" to="." method="_on_PondDetectionArea_area_entered"]
+[connection signal="area_exited" from="PondDetectionArea" to="." method="_on_PondDetectionArea_area_exited"]

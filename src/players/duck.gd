@@ -26,6 +26,8 @@ var follower: Duck
 var start_position := Vector2.INF
 var start_surface: Surface
 
+var is_in_pond := false
+
 var is_attached_to_leader := false
 var just_attached_to_leader := false
 var just_detached_from_leader := false
@@ -154,3 +156,22 @@ func on_detached_from_leader() -> void:
 
 func on_touched_enemy(enemy: KinematicBody2D) -> void:
     pass
+
+
+func _on_PondDetectionArea_area_entered(area: Area2D) -> void:
+    if _is_destroyed or \
+            is_fake or \
+            !Gs.level.is_momma_level_started:
+        return
+    
+    is_in_pond = true
+    Gs.level.check_if_all_ducks_are_in_pond()
+
+
+func _on_PondDetectionArea_area_exited(area: Area2D) -> void:
+    if _is_destroyed or \
+            is_fake or \
+            !Gs.level.is_momma_level_started:
+        return
+    
+    is_in_pond = false

@@ -154,7 +154,8 @@ func _process_sounds() -> void:
 
 
 func _on_DucklingDetectionArea_body_entered(duckling: Duckling):
-    if is_fake:
+    if _is_destroyed or \
+            is_fake:
         return
     
     if is_logging_events:
@@ -209,7 +210,8 @@ func _pounce_on_duckling(duckling: Duckling) -> void:
 
 
 func _on_DuckCollisionDetectionArea_body_entered(duck: Duck) -> void:
-    if is_fake or \
+    if _is_destroyed or \
+            is_fake or \
             !Gs.level.is_momma_level_started:
         return
     

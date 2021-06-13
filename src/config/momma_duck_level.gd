@@ -34,6 +34,7 @@ var spiders := []
 
 var last_attached_duck: Duck
 var is_momma_level_started := false
+var is_over := false
 
 
 #func _enter_tree() -> void:
@@ -59,31 +60,31 @@ func _start() -> void:
     spider_spawn_positions = Gs.utils.get_all_nodes_in_group(
             SPIDER_SPAWN_POSITIONS_GROUP_NAME)
     
-    for spawn_position in duckling_spawn_positions:
-        var duckling: Duckling = add_player(
-                DUCKLING_RESOURCE_PATH,
-                spawn_position.position,
-                false)
-        duckling.call_deferred("create_leash_annotator")
-        ducklings.push_back(duckling)
+#    for spawn_position in duckling_spawn_positions:
+#        var duckling: Duckling = add_player(
+#                DUCKLING_RESOURCE_PATH,
+#                spawn_position.position,
+#                false)
+#        duckling.call_deferred("create_leash_annotator")
+#        ducklings.push_back(duckling)
     
-    for spawn_position in fox_spawn_positions:
-        var fox: Fox = add_player(
-                FOX_RESOURCE_PATH,
-                spawn_position.position,
-                false)
-        foxes.push_back(fox)
-    
-    for spawn_position in porcupine_spawn_positions:
-        var porcupine: Porcupine = add_player(
-                PORCUPINE_RESOURCE_PATH,
-                spawn_position.position,
-                false)
-        porcupines.push_back(porcupine)
-    
-    for spawn_position in spider_spawn_positions:
-        var spider: Spider = add_spider(spawn_position.position)
-        spiders.push_back(spider)
+#    for spawn_position in fox_spawn_positions:
+#        var fox: Fox = add_player(
+#                FOX_RESOURCE_PATH,
+#                spawn_position.position,
+#                false)
+#        foxes.push_back(fox)
+#
+#    for spawn_position in porcupine_spawn_positions:
+#        var porcupine: Porcupine = add_player(
+#                PORCUPINE_RESOURCE_PATH,
+#                spawn_position.position,
+#                false)
+#        porcupines.push_back(porcupine)
+#
+#    for spawn_position in spider_spawn_positions:
+#        var spider: Spider = add_spider(spawn_position.position)
+#        spiders.push_back(spider)
     
     call_deferred("_on_started")
 
@@ -93,8 +94,6 @@ func _on_started() -> void:
 
 
 func _destroy() -> void:
-    ._destroy()
-    
     for duckling in ducklings:
         remove_player(duckling)
     ducklings.clear()
@@ -113,6 +112,8 @@ func _destroy() -> void:
     
     if is_instance_valid(momma):
         remove_player(momma)
+    
+    ._destroy()
 
 
 #func _on_initial_input() -> void:
@@ -149,6 +150,7 @@ func add_spider(position: Vector2) -> Spider:
 
 
 func remove_spider(spider: Spider) -> void:
+    spider._destroy()
     remove_child(spider)
 
 
@@ -190,6 +192,39 @@ func swap_run_away_with_duckling(run_away_duckling: RunAwayDuckling) -> void:
     ducklings.push_back(duckling)
 
 
+func check_if_all_ducks_are_in_pond() -> void:
+    if !momma.is_in_pond:
+        return
+    
+    for duckling in ducklings:
+        if !duckling.is_in_pond:
+            return
+    
+    trigger_level_victory()
+
+
+func trigger_level_victory() -> void:
+    if !is_over:
+        is_over = true
+        quit(false)
+
+
+func _record_level_results() -> void:
+    ._record_level_results()
+    
+    var level_fastest_time_settings_key := \
+            get_level_fastest_time_settings_key(_id)
+    var time := _get_level_play_time_unscaled()
+    var previous_fastest_time: float = Gs.save_state.get_setting(
+            level_fastest_time_settings_key,
+            INF)
+    var reached_new_fastest_time := time < previous_fastest_time
+    if reached_new_fastest_time:
+        Gs.save_state.set_setting(
+                level_fastest_time_settings_key,
+                time)
+
+
 func get_music_name() -> String:
     return "on_a_quest"
 
@@ -197,3 +232,7 @@ func get_music_name() -> String:
 func get_slow_motion_music_name() -> String:
     # FIXME: Add slo-mo music
     return ""
+
+
+static func get_level_fastest_time_settings_key(level_id: String) -> String:
+    return "level_%s_fastest_time" % level_id

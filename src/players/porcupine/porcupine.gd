@@ -132,7 +132,8 @@ func _walk_away_from_momma() -> void:
 
 
 func _on_DuckCollisionDetectionArea_body_entered(duck: Duck) -> void:
-    if is_fake or \
+    if _is_destroyed or \
+            is_fake or \
             !Gs.level.is_momma_level_started:
         return
     
