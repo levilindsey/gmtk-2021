@@ -61,10 +61,10 @@ func _trigger_new_navigation() -> void:
 
 func _process_sounds() -> void:
     if just_triggered_jump:
-        Gs.audio.play_sound("jump")
+        Gs.audio.play_sound("duck_jump")
     
     if surface_state.just_left_air:
-        Gs.audio.play_sound("land")
+        Gs.audio.play_sound("duck_land")
 
 
 func _show_exclamation_mark() -> void:
@@ -81,15 +81,13 @@ func _show_exclamation_mark() -> void:
 func on_attached_to_leader() -> void:
     _show_exclamation_mark()
     
-    # FIXME: ----------------------
-    # - Trigger sound
+    Gs.audio.play_sound("duckling_quack")
 
 
 func on_detached_from_leader() -> void:
     _show_exclamation_mark()
     
-    # FIXME: ----------------------
-    # - Trigger sound
+    Gs.audio.play_sound("duckling_quack")
 
 
 func on_touched_enemy(enemy: KinematicBody2D) -> void:
@@ -98,8 +96,7 @@ func on_touched_enemy(enemy: KinematicBody2D) -> void:
     
     _show_exclamation_mark()
     
-    # FIXME: ----------------------
-    # - Trigger sound
+    Gs.audio.play_sound("duckling_quack")
     
     if is_logging_events:
         Gs.logger.print("Duckling touched an enemy")

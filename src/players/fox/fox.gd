@@ -147,10 +147,10 @@ func _trigger_wander() -> void:
 
 func _process_sounds() -> void:
     if just_triggered_jump:
-        Gs.audio.play_sound("jump")
+        Gs.audio.play_sound("duck_jump")
     
     if surface_state.just_left_air:
-        Gs.audio.play_sound("land")
+        Gs.audio.play_sound("duck_land")
 
 
 func _on_DucklingDetectionArea_body_entered(duckling: Duckling):

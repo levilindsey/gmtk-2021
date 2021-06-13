@@ -130,6 +130,8 @@ func _update_attachment() -> void:
     
     if just_detached_from_leader:
         on_detached_from_leader()
+        
+        Gs.audio.play_sound("lost_duck")
 
 
 func on_leader_detached() -> void:
@@ -190,9 +192,7 @@ func _quack() -> void:
     quack_timeout_id = Gs.time.set_timeout(
                 funcref(self, "_on_quack_completed"), duration)
     
-    # FIXME: ---------------
-    # - play sound
-    pass
+    Gs.audio.play_sound("quack")
 
 
 func _on_quack_completed() -> void:

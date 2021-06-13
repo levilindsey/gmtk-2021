@@ -44,10 +44,10 @@ func _on_destination_reached() -> void:
 
 func _process_sounds() -> void:
     if just_triggered_jump:
-        Gs.audio.play_sound("jump")
+        Gs.audio.play_sound("duck_jump")
     
     if surface_state.just_left_air:
-        Gs.audio.play_sound("land")
+        Gs.audio.play_sound("duck_land")
 
 
 func _show_exclamation_mark() -> void:

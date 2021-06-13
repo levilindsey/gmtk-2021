@@ -56,21 +56,6 @@ var _sounds_manifest := [
         path_prefix = "res://addons/scaffolder/assets/sounds/",
     },
     {
-        name = "cadence",
-        volume_db = 8.0,
-        path_prefix = "res://addons/scaffolder/assets/sounds/",
-    },
-    {
-        name = "jump",
-        volume_db = -6.0,
-        path_prefix = "res://addons/scaffolder/assets/sounds/",
-    },
-    {
-        name = "land",
-        volume_db = -0.0,
-        path_prefix = "res://addons/scaffolder/assets/sounds/",
-    },
-    {
         name = "menu_select",
         volume_db = -2.0,
         path_prefix = "res://addons/scaffolder/assets/sounds/",
@@ -105,9 +90,35 @@ var _sounds_manifest := [
         volume_db = 17.0,
         path_prefix = "res://addons/scaffolder/assets/sounds/",
     },
+    
+    {
+        name = "duck_jump",
+        volume_db = -6.0,
+        path_prefix = "res://assets/sounds/",
+    },
+    {
+        name = "duck_land",
+        volume_db = -2.0,
+        path_prefix = "res://assets/sounds/",
+    },
     {
         name = "momma_cadence",
-        volume_db = 17.0,
+        volume_db = 10.0,
+        path_prefix = "res://assets/sounds/",
+    },
+    {
+        name = "duckling_quack",
+        volume_db = 2.0,
+        path_prefix = "res://assets/sounds/",
+    },
+    {
+        name = "quack",
+        volume_db = 1.0,
+        path_prefix = "res://assets/sounds/",
+    },
+    {
+        name = "lost_duck",
+        volume_db = 1.0,
         path_prefix = "res://assets/sounds/",
     },
 ]
@@ -266,6 +277,8 @@ var _player_param_classes := [
 ]
 
 var welcome_panel_items := [
+    HeaderLabeledControlItem.new("Lead your ducklings to the pond"),
+#    StaticTextLabeledControlItem.new("          Lead your ducklings to the pond", ""),
     StaticTextLabeledControlItem.new("*Auto nav*", "click"),
     StaticTextLabeledControlItem.new("Walk/Climb", "arrow key / wasd"),
     StaticTextLabeledControlItem.new("Jump", "space / x"),

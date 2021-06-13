@@ -13,10 +13,10 @@ func _update_attachment() -> void:
 
 func _process_sounds() -> void:
     if just_triggered_jump:
-        Gs.audio.play_sound("jump")
+        Gs.audio.play_sound("duck_jump")
     
     if surface_state.just_left_air:
-        Gs.audio.play_sound("land")
+        Gs.audio.play_sound("duck_land")
 
 
 func on_touched_enemy(enemy: KinematicBody2D) -> void:

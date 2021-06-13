@@ -2,11 +2,11 @@ class_name LeashAnnotator
 extends Node2D
 
 
-const LEASH_COLOR := Color("a37e3c")
-const LEASH_MAX_STRETCHED_COLOR := Color("FF2204")
+const LEASH_COLOR := Color("c3ae6c33")
+const LEASH_MAX_STRETCHED_COLOR := Color("FF220433")
 
-const LEASH_WIDTH := 6.0
-const LEASH_MAX_STRETCHED_WIDTH := 1.4
+const LEASH_WIDTH := 2.0
+const LEASH_MAX_STRETCHED_WIDTH := 0.5
 
 const LEASH_DETACH_DISTANCE_RATIO_TO_START_STRETCHING_AT := 0.33
 const DISTANCE_TO_START_STRETCHING_AT := \
