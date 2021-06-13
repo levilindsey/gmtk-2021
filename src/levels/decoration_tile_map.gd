@@ -1,6 +1,6 @@
 tool
 class_name DecorationTileMap
-extends SurfacesTileMap
+extends TileMap
 
 
 const DEFAULT_TILE_SET := \

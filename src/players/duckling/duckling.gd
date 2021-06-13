@@ -33,7 +33,8 @@ func _update_navigator(delta_scaled: float) -> void:
     
     if is_attached_to_leader:
         if navigator.is_currently_navigating:
-            if is_close_enough_to_leader_to_stop_moving:
+            if is_close_enough_to_leader_to_stop_moving and \
+                    surface_state.is_grabbing_floor:
                 navigator.stop()
             elif navigator.navigation_state.just_reached_end_of_edge and \
                     surface_state.just_left_air:

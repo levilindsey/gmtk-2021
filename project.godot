@@ -244,7 +244,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/scaffolder/src/gui/settings_items/debug_time_display_settings_labeled_control_item.gd"
 }, {
-"base": "SurfacesTileMap",
+"base": "TileMap",
 "class": "DecorationTileMap",
 "language": "GDScript",
 "path": "res://src/levels/decoration_tile_map.gd"
