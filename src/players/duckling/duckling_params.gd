@@ -31,7 +31,7 @@ func _init_params() -> void:
 
 
 func _init_animator_params() -> void:
-    animator_params = PlayerAnimatorParams.new()
+    animator_params = DuckAnimatorParams.new()
     
     animator_params.player_animator_scene_path = \
             "res://src/players/duckling/duckling_animator.tscn"
@@ -45,6 +45,7 @@ func _init_animator_params() -> void:
     animator_params.walk_name = "Walk"
     animator_params.climb_up_name = "ClimbUp"
     animator_params.climb_down_name = "ClimbDown"
+    animator_params.swim_name = "Swim"
 
     animator_params.rest_playback_rate = 0.8
     animator_params.rest_on_wall_playback_rate = 0.8
@@ -54,3 +55,4 @@ func _init_animator_params() -> void:
     animator_params.climb_up_playback_rate = 9.4
     animator_params.climb_down_playback_rate = \
             -animator_params.climb_up_playback_rate / 2.33
+    animator_params.swim_playback_rate = 1.0

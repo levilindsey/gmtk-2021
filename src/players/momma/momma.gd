@@ -20,6 +20,4 @@ func _process_sounds() -> void:
 
 
 func on_touched_enemy(enemy: KinematicBody2D) -> void:
-    # FIXME: ---------------
-    # - play sound
-    pass
+    _quack()

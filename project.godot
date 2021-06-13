@@ -299,6 +299,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/players/duck.gd"
 }, {
+"base": "PlayerAnimatorParams",
+"class": "DuckAnimatorParams",
+"language": "GDScript",
+"path": "res://src/players/duck_animator_params.gd"
+}, {
 "base": "Duck",
 "class": "Duckling",
 "language": "GDScript",
@@ -309,7 +314,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/players/duckling/duckling_animator.gd"
 }, {
-"base": "MovementParams",
+"base": "MommaParams",
 "class": "DucklingParams",
 "language": "GDScript",
 "path": "res://src/players/duckling/duckling_params.gd"
@@ -1768,6 +1773,7 @@ _global_script_class_icons={
 "DrawUtils": "",
 "DropdownLabeledControlItem": "",
 "Duck": "",
+"DuckAnimatorParams": "",
 "Duckling": "",
 "DucklingAnimator": "",
 "DucklingParams": "",

@@ -20,6 +20,8 @@ const FAR_ENOUGH_TO_START_NAVIGATING_DISTANCE_SQUARED := \
         FAR_ENOUGH_TO_START_NAVIGATING_DISTANCE * \
         FAR_ENOUGH_TO_START_NAVIGATING_DISTANCE
 
+const QUACK_DURATION_DEFAULT := 0.4
+
 var leader: Duck
 var follower: Duck
 
@@ -27,6 +29,8 @@ var start_position := Vector2.INF
 var start_surface: Surface
 
 var is_in_pond := false
+var is_quacking := false
+var quack_timeout_id := -1
 
 var is_attached_to_leader := false
 var just_attached_to_leader := false
@@ -175,3 +179,31 @@ func _on_PondDetectionArea_area_exited(area: Area2D) -> void:
         return
     
     is_in_pond = false
+
+
+func _quack() -> void:
+    is_quacking = true
+    var duration: float = \
+            QUACK_DURATION_DEFAULT / \
+            movement_params.animator_params.quack_playback_rate
+    Gs.time.clear_timeout(quack_timeout_id)
+    quack_timeout_id = Gs.time.set_timeout(
+                funcref(self, "_on_quack_completed"), duration)
+    
+    # FIXME: ---------------
+    # - play sound
+    pass
+
+
+func _on_quack_completed() -> void:
+    is_quacking = false
+    _process_animation()
+
+
+func _process_animation() -> void:
+    if is_in_pond:
+        animator.play(MommaAnimator.SWIM_ANIMATION_TYPE)
+    elif is_quacking:
+        animator.play(MommaAnimator.QUACK_ANIMATION_TYPE)
+    else:
+        ._process_animation()
