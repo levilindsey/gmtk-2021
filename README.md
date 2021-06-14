@@ -9,19 +9,27 @@
        alt="Cover art for the Momma Duck game. It's show's a pixel-art rendering of a momma duck and her three ducklings.">
 </p>
 
-_Collect your ducklings and lead them to safety!_
+> _Collect your ducklings and lead them to safety!_
+
+> This is a **point-and-click pathfinder**!
 
 This game was created in 48-hours as a submission for the [GMTK 2021 game jam](https://itch.io/jam/gmtk-2021). All design, code, images, sound effects, and music were created by Levi.
 
-## Some interesting features
-
--   Procedural pathfinding using the [Surfacer](https://godotengine.org/asset-library/asset/968) library.
--   GUI scaffolding using the [Scaffolder](https://godotengine.org/asset-library/asset/969) library.
--   Rope-simulation using [Störmer–Verlet integration](https://en.wikipedia.org/wiki/Verlet_integration).
-
-## Theme: "Joined together"
+## The theme: "Joined together"
 
 You are a momma duck. Your precious ducklings follow closely behind you as you lead them to a safe pond.
+
+## What exactly existed before the start of the jam?
+
+If you think this looks polished and like way too much for a single person to have done in just two days, you're right! But most of the really impressive stuff is from a couple open-source Godot Asset Library packages: [Scaffolder](https://godotengine.org/asset-library/asset/969) and [Surfacer](https://godotengine.org/asset-library/asset/968).
+
+-   The Scaffolder library:
+    -   This mostly adds the GUI and screen-layout you see before actually starting a level.
+-   The Surfacer library:
+    -   This mostly adds pathfinding.
+        -   Parsing tile maps into platform graphs of navigable surfaces.
+        -   Calculating paths through the graph and executing movement through these paths.
+        -   Annotating stuff relating to these paths.
 
 ## Software used
 
@@ -29,14 +37,7 @@ You are a momma duck. Your precious ducklings follow closely behind you as you l
 -   **[Aseprite](https://www.aseprite.org/)**: Pixel-art image editor.
 -   **[Bfxr](https://www.bfxr.net/)**: Sound effects editor.
 -   **[DefleMask](https://deflemask.com/)**: Chiptune music tracker.
--   **[Scaffolder](https://godotengine.org/asset-library/asset/969)**: A framework from the Godot Asset Library that provides some general app infrastructure.
-    -   Here are some of the features used:
-        -   UI and camera scaling to adapt to the current viewport.
-        -   Analytics.
-        -   Automatic crash log reporting.
-        -   Screen layout and navigation.
-        -   Utility functions (e.g., Time, Geometry, DrawUtils, Audio).
-        -   A widget library (e.g., AccordionPanel, LabeledControlList).
+-   **[Scaffolder](https://godotengine.org/asset-library/asset/969)**: A framework from the Godot Asset Library that provides some general app infrastructure (like GUI layout and screen navigation).
 -   **[Surfacer](https://godotengine.org/asset-library/asset/968)**: A framework from the Godot Asset Library that provides procedural path-finding across 2D platforms.
 
 ## Licenses
