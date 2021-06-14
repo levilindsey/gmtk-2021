@@ -3,17 +3,19 @@
 > _**[Play the game!](https://levi.dev/gmtk21)**_
 > 
 > _**[Watch the gameplay video!](https://www.youtube.com/watch?v=QYv0xNa0bO8)**__
+> 
+> _**[See how it was rated!](https://itch.io/jam/gmtk-2021/rate/1085910)**_
 
 <p align="center">
-  <img src="assets/images/icon_1024x768.png"
-       alt="Cover art for the Momma Duck game. It's show's a pixel-art rendering of a momma duck and her three ducklings.">
+  <a href="https://itch.io/jam/gmtk-2021/rate/1085910"><img src="assets/images/icon_1024x768.png"
+       alt="Cover art for the Momma Duck game. It's show's a pixel-art rendering of a momma duck and her three ducklings."></a>
 </p>
 
 > _Collect your ducklings and lead them to safety!_
 
-> This is a **point-and-click pathfinder**!
+> This is a **point-and-click platformer**!
 
-This game was created in 48-hours as a submission for the [GMTK 2021 game jam](https://itch.io/jam/gmtk-2021). All design, code, images, sound effects, and music were created by Levi.
+This game was created in 48-hours as a [submission](https://itch.io/jam/gmtk-2021/rate/1085910) for the [GMTK 2021 game jam](https://itch.io/jam/gmtk-2021). All design, code, images, sound effects, and music were created by [Levi](https://levi.dev).
 
 ## The theme: "Joined together"
 
