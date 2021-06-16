@@ -1,10 +1,10 @@
 # Momma Duck
 
+> _**Note:** This is the original version of the game that was submitted to GMTK 2021. [An updated version of the game is here](https://github.com/SnoringCatGames/momma-duck)._
+
 > _**[Play the game!](https://levi.dev/gmtk21)**_
 > 
-> _**[Watch the gameplay video!](https://www.youtube.com/watch?v=QYv0xNa0bO8)**__
-> 
-> _**[See how it was rated!](https://itch.io/jam/gmtk-2021/rate/1085910)**_
+> _**[Watch the gameplay video!](https://www.youtube.com/watch?v=QYv0xNa0bO8)**_
 
 <p align="center">
   <a href="https://itch.io/jam/gmtk-2021/rate/1085910"><img src="assets/images/icon_1024x768.png"
